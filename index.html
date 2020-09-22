@@ -1,153 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+layout: default
+robots: noindex
+---
 
-  <head>
+<div class="main-post-list">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-    <title>MURU 7.8</title>
-
-<!--
-
-Breezed Template
-
-https://templatemo.com/tm-543-breezed
-
--->
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-
-    <link rel="stylesheet" href="assets/css/templatemo-breezed.css">
-
-    <link rel="stylesheet" href="assets/css/owl-carousel.css">
-
-    <link rel="stylesheet" href="assets/css/lightbox.css">
-
-    </head>
-
-    <body>
-      <body style="background-color:#e1cbf7;">
-
-    <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
+  <ol class="post-list">
+    {% for post in paginator.posts %}
+      <li>
+        <h2 class="post-list__post-title post-title"><a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+        <p class="excerpt">{{ post.excerpt | strip_html }}&hellip;</p>
+        <div class="post-list__meta">
+            <time datetime="{{ post.date | date: "%Y-%m-%d %H:%M" }}" class="post-list__meta--date date">{{ post.date | date: "%-d %b %Y" }}</time>
+            {% if post.tags.size > 0 %}
+            &#8226; <span class="post-meta__tags">on {% for tag in post.tags %}<a href="{{ site.baseurl }}/tags/#{{ tag }}">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}</span>
+            {% endif %}
         </div>
-    </div>
-    <!-- ***** Preloader End ***** -->
+        <hr class="post-list__divider">
+      </li>
+    {% endfor %}
+  </ol>
 
+  <hr class="post-list__divider ">
 
+  {% if paginator.previous_page or paginator.next_page %}
+      {% include pagination.html %}
+  {% endif %}
 
-
-
-
-
-    <!-- ***** About Area Starts ***** -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    <div class="left-text-content">
-                        <div class="section-heading">
-
-                            <h2>MURU 7.8</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="service-item">
-                                  <a href="https://claudiavalente.net/"><h4>Claudia Valente</h4></a>
-                                  <a href="https://nicmotta.github.io"><h4>Nic Motta</h4></a>
-                                  <a href="http://leandrob.com.ar/"><h4>Leandro Barbeito</h4></a>
-                                  <a href="https://guadalupechavezpardo.wordpress.com/"><h4>Lupita Chávez Pardo</h4></a>
-                                    <hr>
-
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    <div class="right-text-content">
-                      <div class="section-heading">
-                        <h2>Entrar en:</h2>
-                        <a href="te_puedo_acariciar_con_una_flor.html"><h2>¿Te puedo acariciar con una flor?</h2></a>
-
-                      <br>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-    <!-- ***** About Area Ends ***** -->
-
-
-
-
-    <!-- ***** Footer Start ***** -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-xs-8">
-                    <div class="left-text-content">
-                        <p>Copyright &copy; MURU 7.8.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </footer>
-
-
-    <!-- jQuery -->
-    <script src="assets/js/jquery-2.1.0.min.js"></script>
-
-    <!-- Bootstrap -->
-    <script src="assets/js/popper.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-
-    <!-- Plugins -->
-    <script src="assets/js/owl-carousel.js"></script>
-    <script src="assets/js/scrollreveal.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/imgfix.min.js"></script>
-    <script src="assets/js/slick.js"></script>
-    <script src="assets/js/lightbox.js"></script>
-    <script src="assets/js/isotope.js"></script>
-
-    <!-- Global Init -->
-    <script src="assets/js/custom.js"></script>
-
-    <script>
-
-        $(function() {
-            var selectedClass = "";
-            $("p").click(function(){
-            selectedClass = $(this).attr("data-rel");
-            $("#portfolio").fadeTo(50, 0.1);
-                $("#portfolio div").not("."+selectedClass).fadeOut();
-            setTimeout(function() {
-              $("."+selectedClass).fadeIn();
-              $("#portfolio").fadeTo(50, 1);
-            }, 500);
-
-            });
-        });
-
-    </script>
-
-  </body>
-</html>
+</div>
