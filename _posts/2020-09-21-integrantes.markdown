@@ -7,6 +7,8 @@ date: 2020-09-21
 [**Leandro Barbeito**]()
 
 ![](/images/lean_integrante.png)
+
+
 (Buenos Aires, Argentina)
 
 Docente y Desarrollador de dispositivos hardware programable. Es profesor de Robotica Educativa en Escuela Integral Maimónides y DGCYE (educación de la prov. Bs As). Actualmente trabaja en Smile Latam encargado del área de Sotware y Hadware. 
