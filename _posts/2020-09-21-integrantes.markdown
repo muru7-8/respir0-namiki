@@ -9,7 +9,7 @@ date: 2020-09-21
 ![](/images/lean_integrante.png)
 
 
-(Buenos Aires, Argentina)
+(n 1993, Buenos Aires, Argentina)
 
 Docente y Desarrollador de dispositivos hardware programable. Es profesor de Robótica Educativa en Escuela Integral Maimónides desde el 2019 y en DGCYE (educación de la prov. Bs As). Desde el 2014 fue Tecnico comercial en PATAGONIA TECNOLOGY. Actualmente trabaja en Smile Latam encargado del área de Sotware y Hadware. 
 
@@ -35,7 +35,7 @@ Premiado en ArCiTec (2018) , el  Festival de videoarte Proyector, España (2018)
 
 ![](/images/lupe_integrante.png)
 
-(México, 1985)
+(n 1985, Nayarit, México)
 Artista, docente e Investigadora. Licenciada en Artes Plásticas (UGTO-MX). Maestranda en Tecnología y Estética de las Artes Electrónicas, UNTREF.  Es tutora artística de la plataforma  educativa transdiciplinaria Mala Praxis, UNTREF. Co-fundadora del Colectivo Electrobiota, integrante del grupo artístico Muru 7.8 y del Laboratorio de Geopoéticas Subalternas, UNTREF.
 
 Beneficiaria del Programa de Estímulos a la Creación y Desarrollo Artístico por FECAN, México. Recibió Mención honorífica en Fotografía, Forum Cultural Guanajuato, Mx.  Y en la 3era Bienal Kosice (2014). Primer lugar en el 2° Premio UNTREF a las Artes Electrónicas de la UNTREF (2016). Su práctica artística, traza lazos con la vida vegetal desde cosmovisiones ancestrales y los vínculos afectivos de las relaciones interespecies. Ha realizando una serie de prácticas, muestras, talleres y charlas para familias y adultes.
