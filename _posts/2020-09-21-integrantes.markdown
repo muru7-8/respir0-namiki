@@ -31,9 +31,7 @@ Premiado en ArCiTec (2018) , el  Festival de videoarte Proyector, España (2018)
 ![](/images/lupe_integrante.png)
 
 (México, 1985)
-Artista, Tutoría artística e Investigadora. Egresada de la Universidad de Guanajuato con Licenciatura en Artes Plásticas, orientación en Fotografía.
-
-Actualmente, maestranda en Tecnología y Estética de las Artes Electrónicas, UNTREF. Es Docente y Tutora artística del programa "Mala Praxis", Plataforma experimental transdisciplinaria en el cruce Arte, Ciencia y Tecnología aplicada al ámbito educativo, UNTREF. Y en la Cátedra Paredes de Imagen Digital, Departamento de Artes Visuales, UNA. Co-fundadora del Colectivo Electrobiota e integrante del Laboratorio de Geopoéticas Subalternas, UNTREF. Investigadora en formación desde el 2013, participando del programa franco-argentino INNOVART Arte e Innovación 2018-00.
+Artista, docente e Investigadora. Licenciada en Artes Plásticas de la Universidad de Guanajuato. Actualmente, maestranda en Tecnología y Estética de las Artes Electrónicas, UNTREF.  Es tutora artística de la plataforma transdiciplinaria Mala Praxis, UNTREF. Co-fundadora del Colectivo Electrobiota, integrante del grupo artistico  Muru 7.8 y del Laboratorio de Geopoéticas Subalternas, UNTREF.
 
 Fue beneficiaria del Programa de Estímulos a la Creación y Desarrollo Artístico por el Fondo Estatal para la Cultura y las Artes de Nayarit - 2011 y ha recibido  menciones y reconocimientos como: Mención Honorífica en Fotografía, Forum Cultural Guanajuato, Mx. Mención en la 3era Bienal Kosice, Edición Latinoamérica; Primer lugar en el 2° Premio UNTREF a las Artes Electrónicas de la UNTREF. Su práctica artística, traza lazos con la vida vegetal desde cosmovisiones ancestrales, los vínculos afectivos de las relaciones interespecies y la biología cultural. Realizando una serie de prácticas, muestras, talleres y charlas para familias y adultes.
 
