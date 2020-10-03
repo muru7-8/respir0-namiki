@@ -22,18 +22,34 @@ Desarrollador de programación visual, modelado e impresión 3D, video mapping e
 
 Es parte de los grupos artísticos colaborativos MURU 7.8 y Transelectronicxs
 
-Premiado en ArCiTec (2018) , el  Festival de videoarte Proyector, España (2018). Expuso en Bienalsur 2019 (Bs As/ Costa Rica), España, Colombia y Brasil
+Premiado en ArCiTec (2018) , el  Festival de videoarte Proyector, España (2018). Expuso en Bienalsur 2019 (Buenos Aires/ Costa Rica), España, Colombia y Brasil
 
 ---
 
-[**Guadalupe Chávez Pardo**]()
+[**Guadalupe Chávez Pardo**](https://guadalupechavezpardo.wordpress.com/)
 
 ![](/images/lupe_integrante.png)
 
+(México, 1985)
+Artista, Tutoría artística e Investigadora. Egresada de la Universidad de Guanajuato con Licenciatura en Artes Plásticas, orientación en Fotografía.
+
+Actualmente, maestranda en Tecnología y Estética de las Artes Electrónicas, UNTREF. Es Docente y Tutora artística del programa "Mala Praxis", Plataforma experimental transdisciplinaria en el cruce Arte, Ciencia y Tecnología aplicada al ámbito educativo, UNTREF. Y en la Cátedra Paredes de Imagen Digital, Departamento de Artes Visuales, UNA. Co-fundadora del Colectivo Electrobiota e integrante del Laboratorio de Geopoéticas Subalternas, UNTREF. Investigadora en formación desde el 2013, participando del programa franco-argentino INNOVART Arte e Innovación 2018-00.
+
+Fue beneficiaria del Programa de Estímulos a la Creación y Desarrollo Artístico por el Fondo Estatal para la Cultura y las Artes de Nayarit - 2011 y ha recibido  menciones y reconocimientos como: Mención Honorífica en Fotografía, Forum Cultural Guanajuato, Mx. Mención en la 3era Bienal Kosice, Edición Latinoamérica; Primer lugar en el 2° Premio UNTREF a las Artes Electrónicas de la UNTREF. Su práctica artística, traza lazos con la vida vegetal desde cosmovisiones ancestrales, los vínculos afectivos de las relaciones interespecies y la biología cultural. Realizando una serie de prácticas, muestras, talleres y charlas para familias y adultes.
+
 ---
 
-[**Claudia Valente**]()
+[**Claudia Valente**](https://claudiavalente.net/)
 
 ![](/images/claudia_integrante.png)
+
+(n 1965, Buenos Aires, Argentina)
+Artista, docente e investigadora. Magister en Tecnología y Estética de las Artes Electrónicas  (UNTREF). Licenciada en artes visuales (UNA).
+
+Su producción artística  abarca proyectos intermediales con enfoques geopolíticos en autorías colaborativas. Actualmente coordina los grupos artísticos MURU 7.8 y Transelectronicxs
+Premiada en  Bienal Kosice (2014, 2015) y ArCiTec (2018), Seleccionada para el Premio a las Artes Electrónicas UNTREF (2016) y en el  Festival de videoarte Proyector, España (2018). Expuso en Bienalsur 2019 (Buenos Aires/ Costa Rica) y en el Simposio de artes contemporáneas Factors, Brasil.
+
+Realizó una residencia artística en DXARTS, Universidad de Washington e intercambios artísticos y docentes en universidades de Brasil y Costa Rica.
+
 
 ---
