@@ -50,9 +50,7 @@ Realizó una residencia artística en DXARTS, Universidad de Washington e interc
 ![](/images/lean_integrante.png)
 
 
-(n 1993, Buenos Aires, Argentina)
-
-Docente y desarrollador de dispositivos hardware programable para empresas y proyectos artísticos. Es profesor de robótica educativa en escuela integral Maimónides y en DGCYE (educación de la provincia de Buenos Aires). Fue técnico comercial en Patagonia Tecnology. Actualmente trabaja en Smile Latam encargado del área de sotware y hadware.
+(n 1993, Buenos Aires, Argentina) Docente y desarrollador de dispositivos hardware programable para empresas y proyectos artísticos. Es profesor de robótica educativa en escuela integral Maimónides y en DGCYE (educación de la provincia de Buenos Aires). Fue técnico comercial en Patagonia Tecnology. Actualmente trabaja en Smile Latam encargado del área de sotware y hadware.
 
 Actualmente coordina los grupos artísticos MURU 7.8.
 
