@@ -4,8 +4,6 @@ date: 2020-10-04
 
 
 ---
-#### Resonancias sensadas en los roces vitales:
-
 MURU 7.8 desarrolla un modelo de investigación para sensar la fuerza vector en expansión de las entidades vivas. Este "Observatorio de resonancias" conformará una base de datos que nutrirá varios proyectos.
 
 
