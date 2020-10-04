@@ -6,6 +6,7 @@ date: 2020-10-04
 ---
 #### Resonancias sensadas en los roces vitales:
 
+
 [Semillas de Achira](https://muru7-8.github.io/observatorio-resonancia/Sensado_Semillas)
 
 [Achira en la tormenta](https://muru7-8.github.io/observatorio-resonancia/Sensado_Achira)
