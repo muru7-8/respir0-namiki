@@ -15,8 +15,8 @@ date: 2020-10-04
 
 - [**Namiki Artgame**](https://muru-78.itch.io/namiki)
 
-- [**Namiki Universo digital**]()
+- [**Namiki Universo Digital**]()
 
-- [**Ninfa y achira, performance**](https://www.youtube.com/watch?v=IuFPa--piyA&t=12s)
+- [**Ninfa y Achira, Performance**](https://www.youtube.com/watch?v=IuFPa--piyA&t=12s)
 
 - [**Documentación**](https://muru7-8.github.io/2021/namiki_documentacion/)
