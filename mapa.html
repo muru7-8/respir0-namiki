@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <script src="./lib/mappa.js" type="text/javascript"></script>
+
+ 
+    
+    <link rel="stylesheet" href="style.css">
+    
+
+    <title>Respir0 Namiki - Mapa</title>
+</head>
+
+
+<body style="font-family: 'MuseoModerno', cursive;" class="bg-black">
+
+  <div class="text-white md: p-4">
+    <h1 class="text-2xl text-center">Mapa de ubicación</h1>
+  </div>
+
+  <div class="text-white mt-5 mb-5 text-center border w-1/2 m-auto hover:bg-gray-400">
+    <a href="index.html" class="">
+      Volver al espacio Respir0 Namiki
+      </a>
+  </div>
+
+  
+<div class="">
+
+    <script>
+
+      let myMap;
+      let canvas;
+      const mappa = new Mappa('Leaflet');
+      const options = {
+        lat: 0,
+        lng: 0,
+        zoom: 3,
+        style: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+      }
+
+
+      
+      function setup(){
+        canvas = createCanvas(windowWidth, windowHeight - 150);
+        myMap = mappa.tileMap(options); 
+        myMap.overlay(canvas) 
+      
+        fill(100, 200, 100);
+        
+        // Only redraw the point when the map changes and not every frame.
+        myMap.onChange(drawPoint);
+      }
+      
+      function draw(){
+      }
+      
+      function drawPoint(){
+        clear();
+      
+        const nicMotta = myMap.latLngToPixel(-34.4471919, -58.5701505); 
+        ellipse(nicMotta.x, nicMotta.y, 20, 20);
+      
+        const claudiaValente = myMap.latLngToPixel(-34.511906, -58.7776777); 
+        ellipse(claudiaValente.x, claudiaValente.y, 20, 20);
+      
+        const lupitaChavez = myMap.latLngToPixel(21.5043446, -104.894676); 
+        ellipse(lupitaChavez.x, lupitaChavez.y, 20, 20);
+      
+        const leandroBarbeito = myMap.latLngToPixel(-34.6660241, -58.524548); 
+        ellipse(leandroBarbeito.x, leandroBarbeito.y, 20, 20);
+      
+        const bienalHabana = myMap.latLngToPixel(23.135305, -82.3589631); 
+        ellipse(bienalHabana.x, bienalHabana.y, 20, 20);
+      }
+      
+      </script>
+
+</div>
+
+
+
+
+
+
+</body>
+
+</html>

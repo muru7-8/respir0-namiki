@@ -1,0 +1,45 @@
+# Hoja de ruta - desarrollo web - entorno digital
+### Nic Motta
+
+- Lavado de cara a pagina MURU 7.8 
+- Iconos para menú
+  - Cruz - Rosa de los vientos (N, S, E, W) 
+    - Tienda
+    - Mapa general (tipo Google Maps para ubicacion geográfica)
+    - Visualización de datos
+      - Gráfico de cada sensor en tiempo y valor
+    - Mapa conceptual
+      - Ideas base
+      - Descripción de la atmosfera
+      - Génesis de cada nodo
+          - Origen
+          - Sensado
+    - Instructivo de armado
+      - Armado 
+      - Desarmado - paso a paso
+    - MURU7.8 
+      - Quienes somos
+- Ingresar desde QR
+- **Mobile First (COMPLETO)**
+- **Navegación 2D + info (COMPLETO)**
+- **Incorporar MQTT (CANCELADO)**
+- **Incorporar base de datos - FIREBASE (COMPLETO)**
+- Atmosfera 
+  - Referencias de contaminación
+    - Valores bajos, medios y altos 
+- Nodos
+  - No clickeado
+    - **Ubicación (COMPLETO)**
+    - **Nombre dueño (COMPLETO)**
+    - Data sensor
+    - Fecha del ultimo dato recibido
+  - Click
+    - Algo que marque al individuo
+    - Texto
+    - Base de datos
+    - "Activismo ciudadano"
+    - Pop-up
+    - Preguntar:
+      - "¿Por qué decide ingresar a Namiki?" 
+      - "¿Cual es tu relacion con la atmosfera?" 
+      - "¿Que te trae por aqui?"
