@@ -387,3 +387,7 @@ function mostrarMenu(){
   else { menuRosa.style.visibility = "hidden"; }
    
 }
+
+
+
+	document.oncontextmenu = function(){return false}
