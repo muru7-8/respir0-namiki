@@ -90,7 +90,7 @@ var muruFusion = {
                   provincia:"Buenos Aires", 
                   pais:"Argentina",
                   coordenadas: "",
-                  valorCo2: 567,
+                  valorCo2: "",
                   texto: "",
                   posicionX: 500,
                   posicionY: 100,
@@ -185,7 +185,7 @@ function setup() {
         //console.log(nombres + " / " + co2);	
           
       }
-    //console.log(usuarios[keys[0]]);
+    //console.log(usuarios[keys[1]]);
     muruFusion.valorCo2 = usuarios[keys[1]];
     //console.log(nicMotta.valorCo2);
   }
