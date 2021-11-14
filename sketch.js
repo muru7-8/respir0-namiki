@@ -56,7 +56,7 @@ var leandroBarbeito = {
                 coordenadas: "",
                 valorCo2: 665,
                 posicionX: 300,
-                posicionY: 500,
+                posicionY: 600,
                 };
 
 var lupitaChavez = {
@@ -71,7 +71,8 @@ var lupitaChavez = {
                 posicionY: -1000,
                 };
 
-                var bienalHabana = {
+
+var bienalHabana = {
                   nombre:"Bienal de La Habana", 
                   ciudad:"", 
                   provincia:"La Habana", 
@@ -83,6 +84,18 @@ var lupitaChavez = {
                   posicionY: -1500,
                   };
 
+var muruFusion = {
+                  nombre:"MURU 7.8 - Fusion", 
+                  ciudad:"Ciudad de Buenos Aires", 
+                  provincia:"Buenos Aires", 
+                  pais:"Argentina",
+                  coordenadas: "",
+                  valorCo2: 567,
+                  texto: "",
+                  posicionX: 500,
+                  posicionY: 100,
+                  };
+                  
 
 let fondoSemilla;
 let menuUno, menuDos, menuTres, menuCuatro, menuCinco, menuSeis, menuSiete, menuOcho;
@@ -131,6 +144,12 @@ function setup() {
   bienalHabanaModel.scale = 0.2;
   bienalHabanaModel.mouseActive = true;
 
+  // Modelos de cada persona
+  muruFusionModel = createSprite(100, 100);
+  muruFusionModel.addAnimation('normal', 'assets/modeloAchira.gif');
+  muruFusionModel.scale = 0.2;
+  muruFusionModel.mouseActive = true;
+
 
     // Initialize Firebase
     var config = {
@@ -166,9 +185,9 @@ function setup() {
         //console.log(nombres + " / " + co2);	
           
       }
-    console.log(usuarios[keys[4]].co2);
-    nicMotta.valorCo2 = usuarios[keys[3]].co2;
-    console.log(nicMotta.valorCo2);
+    //console.log(usuarios[keys[0]]);
+    muruFusion.valorCo2 = usuarios[keys[0]];
+    //console.log(nicMotta.valorCo2);
   }
   
   function errData(err) {
@@ -196,6 +215,7 @@ function draw() {
     image(fondoSemilla, leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY);
     image(fondoSemilla, lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY);
     image(fondoSemilla, bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY);
+    image(fondoSemilla, muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY);
     
     // CIRCULOS SEMAFOROS
     ellipse(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, 500);
@@ -203,6 +223,7 @@ function draw() {
     ellipse(leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, 500);
     ellipse(lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, 500);
     ellipse(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, 500);
+    ellipse(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, 500);
 
 
     // Centro de espacio virtual - pregunta
@@ -229,6 +250,10 @@ function draw() {
     bienalHabana.valorMap = map(bienalHabana.valorCo2, 400, 10000, 0, 255);
     fill(bienalHabana.valorMap, 120, 0, 100);
     ellipse(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, 100);
+
+    muruFusion.valorMap = map(muruFusion.valorCo2, 400, 10000, 0, 255);
+    fill(muruFusion.valorMap, 120, 0, 100);
+    ellipse(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, 100);
 
 
     // Color de los textos
@@ -294,6 +319,11 @@ function draw() {
          tamañoTexto, tamañoTexto
          );
 
+    text(muruFusion.nombre + "\n" + muruFusion.ciudad + "\n" + muruFusion.provincia + "\n" + muruFusion.pais + "\n" + "Valor Co2: " + muruFusion.valorCo2,
+         muruFusion.posicionX + nuevoX + xTexto, muruFusion.posicionY + nuevoY + yTexto,
+         tamañoTexto, tamañoTexto
+         );
+
     nicMottaModel.position.x = nicMotta.posicionX + nuevoX;
     nicMottaModel.position.y = nicMotta.posicionY + nuevoY;
 
@@ -326,6 +356,13 @@ function draw() {
     bienalHabanaModel.position.y = bienalHabana.posicionY + nuevoY;
 
     if(bienalHabanaModel.mouseIsPressed){
+      // Abrir pop-up con el texto de cara persona
+    }
+
+    muruFusionModel.position.x = muruFusion.posicionX + nuevoX;
+    muruFusionModel.position.y = muruFusion.posicionY + nuevoY;
+
+    if(muruFusionModel.mouseIsPressed){
       // Abrir pop-up con el texto de cara persona
     }
 
