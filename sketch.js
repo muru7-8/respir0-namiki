@@ -186,7 +186,7 @@ function setup() {
           
       }
     //console.log(usuarios[keys[0]]);
-    muruFusion.valorCo2 = usuarios[keys[0]];
+    muruFusion.valorCo2 = usuarios[keys[1]];
     //console.log(nicMotta.valorCo2);
   }
   
