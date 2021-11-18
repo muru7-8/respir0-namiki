@@ -109,8 +109,11 @@ var muruFusion = {
 
 let fondoSemilla;
 let menuUno, menuDos, menuTres, menuCuatro, menuCinco, menuSeis, menuSiete, menuOcho;
+
+
 function preload() {
  fondoSemilla = loadImage("./assets/fondoSemilla.png");
+ sonidoFondo = loadSound('assets/sound/sonidoSemilla.mp3');
 }
 
 function setup() {
@@ -192,6 +195,7 @@ function setup() {
 
   setInterval(tModelo, 100);
 
+  sonidoFondo.loop();
   
   }
   
