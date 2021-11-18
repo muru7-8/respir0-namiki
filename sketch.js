@@ -22,6 +22,16 @@ let textoInicial = "Ella nos acaricia, nos conecta y nos mantiene vivxs.";
 // Footer
 let footer = "MURU 7.8 | Respir0 Namiki | v 1.0 | 2021";
 
+let valorMin = 400;
+let valorMax = 1000;
+
+let tMin = 250;
+let tMax = 500;
+let tFondo;
+let tEstado = false;
+
+let rNicMotta, rClaudiaValente, rLeandroBarbeito, rLupitaChavez, rLaHabana, rMuruFusion;
+
 
 // Definir cada objeto con su informacion correspondiente, posicion en X, Y, offset, texto, color, etc
 var nicMotta = {
@@ -108,7 +118,7 @@ function setup() {
   nuevoX = width / 2.0;
   nuevoY = height / 2.0;
   rectMode(CENTER);
-  strokeWeight(2);
+  strokeWeight(1);
   textLeading(18); // Espacio entre lineas de texto
   textFont("MuseoModerno");
   imageMode(CENTER);
@@ -168,7 +178,19 @@ function setup() {
 
   // 
 
-  
+  tFondo = tMin;
+
+  // RANDOMS UTILES
+
+  rClaudiaValente = random(-150, 150);
+  rNicMotta = random(-150, 150);
+  rLeandroBarbeito = random(-150, 150);
+  rLupitaChavez = random(-150, 150);
+  rLaHabana = random(-150, 150);
+  rMuruFusion = random(-150, 150);
+
+
+  setInterval(tModelo, 100);
 
   
   }
@@ -202,20 +224,23 @@ function setup() {
 
 function draw() {
     background(0);
-
     
-
+    
 
     noFill();
     noStroke();
 
+
+    // TAMAÑO MODELOS
+
+
     // FONDOS MODELOS
-    image(fondoSemilla, nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY);
-    image(fondoSemilla, claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY);
-    image(fondoSemilla, leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY);
-    image(fondoSemilla, lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY);
-    image(fondoSemilla, bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY);
-    image(fondoSemilla, muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY);
+    image(fondoSemilla, nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, tFondo + rNicMotta, tFondo + rNicMotta);
+    image(fondoSemilla, claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY, tFondo + rClaudiaValente, tFondo + rClaudiaValente);
+    image(fondoSemilla, leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, tFondo + rLeandroBarbeito, tFondo + rLeandroBarbeito);
+    image(fondoSemilla, lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, tFondo + rLupitaChavez, tFondo + rLupitaChavez);
+    image(fondoSemilla, bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, tFondo + rLaHabana, tFondo + rLaHabana);
+    image(fondoSemilla, muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, tFondo + rMuruFusion, tFondo + rMuruFusion);
     
     // CIRCULOS SEMAFOROS
     ellipse(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, 500);
@@ -226,32 +251,46 @@ function draw() {
     ellipse(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, 500);
 
 
+    // LINEAS CONECTORAS
+    stroke(120, 100);
+    line(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, nuevoX, nuevoY);
+    line(claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY, nuevoX, nuevoY);
+    line(leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, nuevoX, nuevoY);
+    line(lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, nuevoX, nuevoY);
+    line(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, nuevoX, nuevoY);
+    line(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, nuevoX, nuevoY);
+    fill(120);
+    ellipse(nuevoX, nuevoY, 20);
+    noFill();
+    noStroke();
+
+
     // Centro de espacio virtual - pregunta
     text(textoInicial, nuevoX, nuevoY, tamañoTexto, tamañoTexto);
   
 
     // Colores semaforo para CO2
-    nicMotta.valorMap = map(nicMotta.valorCo2, 400, 10000, 0, 255);
+    nicMotta.valorMap = map(nicMotta.valorCo2, valorMin, valorMax, 0, 255);
     fill(nicMotta.valorMap, 120, 0, 100);
     ellipse(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, 100);
 
-    claudiaValente.valorMap = map(claudiaValente.valorCo2, 400, 10000, 0, 255);
+    claudiaValente.valorMap = map(claudiaValente.valorCo2, valorMin, valorMax, 0, 255);
     fill(claudiaValente.valorMap, 120, 0, 100);
     ellipse(claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY, 100);
 
-    leandroBarbeito.valorMap = map(leandroBarbeito.valorCo2, 400, 10000, 0, 255);
+    leandroBarbeito.valorMap = map(leandroBarbeito.valorCo2, valorMin, valorMax, 0, 255);
     fill(leandroBarbeito.valorMap, 120, 0, 100);
     ellipse(leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, 100);
 
-    lupitaChavez.valorMap = map(lupitaChavez.valorCo2, 400, 10000, 0, 255);
+    lupitaChavez.valorMap = map(lupitaChavez.valorCo2, valorMin, valorMax, 0, 255);
     fill(lupitaChavez.valorMap, 120, 0, 100);
     ellipse(lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, 100);
 
-    bienalHabana.valorMap = map(bienalHabana.valorCo2, 400, 10000, 0, 255);
+    bienalHabana.valorMap = map(bienalHabana.valorCo2, valorMin, valorMax, 0, 255);
     fill(bienalHabana.valorMap, 120, 0, 100);
     ellipse(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, 100);
 
-    muruFusion.valorMap = map(muruFusion.valorCo2, 400, 10000, 0, 255);
+    muruFusion.valorMap = map(muruFusion.valorCo2, valorMin, valorMax, 0, 255);
     fill(muruFusion.valorMap, 120, 0, 100);
     ellipse(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, 100);
 
@@ -368,8 +407,7 @@ function draw() {
 
     drawSprites();
    
-
-
+    
 
     
 
@@ -423,6 +461,27 @@ function mostrarMenu(){
   }
   else { menuRosa.style.visibility = "hidden"; }
    
+}
+
+
+function tModelo(){
+  
+  if (tEstado == false) {
+    tFondo++;
+  }
+  
+  if (tFondo == tMax) {
+    tEstado = true;
+  }
+
+  if (tEstado == true) {
+    tFondo--;
+  }
+
+  if (tFondo == tMin) {
+    tEstado = false;
+  }
+
 }
 
 
