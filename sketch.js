@@ -110,6 +110,8 @@ var muruFusion = {
 let fondoSemilla;
 let menuUno, menuDos, menuTres, menuCuatro, menuCinco, menuSeis, menuSiete, menuOcho;
 
+let polygonClaudiaValente, polygonNicMotta, polygonLeandroBarbeito, polygonLupitaChavez, polygonMuruFusion, polygonLaHabana;
+
 
 function preload() {
  fondoSemilla = loadImage("./assets/fondoSemilla.png");
@@ -196,6 +198,14 @@ function setup() {
   setInterval(tModelo, 100);
 
   sonidoFondo.loop();
+
+
+  polygonClaudiaValente = new Polygon();
+  polygonNicMotta = new Polygon();
+  polygonLeandroBarbeito = new Polygon();
+  polygonLupitaChavez = new Polygon();
+  polygonMuruFusion = new Polygon();
+  polygonLaHabana = new Polygon();
   
   }
   
@@ -256,14 +266,14 @@ function draw() {
 
 
     // LINEAS CONECTORAS
-    stroke(50, 100);
+    stroke(80, 100);
     line(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, nuevoX, nuevoY);
     line(claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY, nuevoX, nuevoY);
     line(leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, nuevoX, nuevoY);
     line(lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, nuevoX, nuevoY);
     line(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, nuevoX, nuevoY);
     line(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, nuevoX, nuevoY);
-    fill(50);
+    fill(80);
     ellipse(nuevoX, nuevoY, 20);
     noFill();
     noStroke();
@@ -275,28 +285,64 @@ function draw() {
 
     // Colores semaforo para CO2
     nicMotta.valorMap = map(nicMotta.valorCo2, valorMin, valorMax, 0, 255);
-    fill(nicMotta.valorMap, 120, 0, 100);
-    ellipse(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, 100);
+    let colorNicMotta = color(nicMotta.valorMap, 120, 0, 100);
+    polygonNicMotta.x = nicMotta.posicionX + nuevoX;
+    polygonNicMotta.y = nicMotta.posicionY + nuevoY;
+    polygonNicMotta.size = 81;
+    polygonNicMotta.color = colorNicMotta;
+    polygonNicMotta.sides = 5;
+    polygonNicMotta.spin = 45 + frameCount / 3;
+    polygonNicMotta.show();
 
     claudiaValente.valorMap = map(claudiaValente.valorCo2, valorMin, valorMax, 0, 255);
-    fill(claudiaValente.valorMap, 120, 0, 100);
-    ellipse(claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY, 100);
+    let colorClaudiaValente = color(claudiaValente.valorMap, 120, 0, 100);
+    polygonClaudiaValente.x = claudiaValente.posicionX + nuevoX;
+    polygonClaudiaValente.y = claudiaValente.posicionY + nuevoY;
+    polygonClaudiaValente.size = 75;
+    polygonClaudiaValente.color = colorClaudiaValente;
+    polygonClaudiaValente.sides = 5;
+    polygonClaudiaValente.spin = 45 + frameCount / 4;
+    polygonClaudiaValente.show();
 
     leandroBarbeito.valorMap = map(leandroBarbeito.valorCo2, valorMin, valorMax, 0, 255);
-    fill(leandroBarbeito.valorMap, 120, 0, 100);
-    ellipse(leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, 100);
+    let colorLeandroBarbeito = color(leandroBarbeito.valorMap, 120, 0, 100);
+    polygonLeandroBarbeito.x = leandroBarbeito.posicionX + nuevoX;
+    polygonLeandroBarbeito.y = leandroBarbeito.posicionY + nuevoY;
+    polygonLeandroBarbeito.size = 76;
+    polygonLeandroBarbeito.color = colorLeandroBarbeito;
+    polygonLeandroBarbeito.sides = 5;
+    polygonLeandroBarbeito.spin = 45 + frameCount / 5;
+    polygonLeandroBarbeito.show();
 
     lupitaChavez.valorMap = map(lupitaChavez.valorCo2, valorMin, valorMax, 0, 255);
-    fill(lupitaChavez.valorMap, 120, 0, 100);
-    ellipse(lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, 100);
+    let colorLupitaChavez = color(lupitaChavez.valorMap, 120, 0, 100);
+    polygonLupitaChavez.x = lupitaChavez.posicionX + nuevoX;
+    polygonLupitaChavez.y = lupitaChavez.posicionY + nuevoY;
+    polygonLupitaChavez.size = 81;
+    polygonLupitaChavez.color = colorLupitaChavez;
+    polygonLupitaChavez.sides = 5;
+    polygonLupitaChavez.spin = 45 + frameCount / 4;
+    polygonLupitaChavez.show();
 
     bienalHabana.valorMap = map(bienalHabana.valorCo2, valorMin, valorMax, 0, 255);
-    fill(bienalHabana.valorMap, 120, 0, 100);
-    ellipse(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, 100);
+    let colorLaHabana = color(bienalHabana.valorMap, 120, 0, 100);
+    polygonLaHabana.x = bienalHabana.posicionX + nuevoX;
+    polygonLaHabana.y = bienalHabana.posicionY + nuevoY;
+    polygonLaHabana.size = 81;
+    polygonLaHabana.color = colorLaHabana;
+    polygonLaHabana.sides = 5;
+    polygonLaHabana.spin = 45 + frameCount / 3;
+    polygonLaHabana.show();
 
     muruFusion.valorMap = map(muruFusion.valorCo2, valorMin, valorMax, 0, 255);
-    fill(muruFusion.valorMap, 120, 0, 100);
-    ellipse(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, 100);
+    let colorMuruFusion = color(muruFusion.valorMap, 120, 0, 100);
+    polygonMuruFusion.x = muruFusion.posicionX + nuevoX;
+    polygonMuruFusion.y = muruFusion.posicionY + nuevoY;
+    polygonMuruFusion.size = 72;
+    polygonMuruFusion.color = colorMuruFusion;
+    polygonMuruFusion.sides = 5;
+    polygonMuruFusion.spin = 45 + frameCount / 3.5;
+    polygonMuruFusion.show();
 
 
     // Color de los textos
