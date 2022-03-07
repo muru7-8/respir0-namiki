@@ -12,7 +12,7 @@ let yOffset = 0.0;
 let apretado = false;
 
 // Configuracion texto de nodos
-let xTexto = 130;
+let xTexto = 150;
 let yTexto = 40;
 let tamañoTexto = 150;
 
@@ -314,7 +314,7 @@ function draw() {
     let colorNicMotta = color(nicMotta.valorMap, 120, 0, 100);
     polygonNicMotta.x = nicMotta.posicionX + nuevoX;
     polygonNicMotta.y = nicMotta.posicionY + nuevoY;
-    polygonNicMotta.size = tFondo / 8 + rNicMotta / 10;
+    polygonNicMotta.size = tFondo / 6 + rNicMotta / 10;
     polygonNicMotta.color = colorNicMotta;
     polygonNicMotta.sides = 25;
     polygonNicMotta.spin = 45 + frameCount / 3;
@@ -324,7 +324,7 @@ function draw() {
     let colorClaudiaValente = color(claudiaValente.valorMap, 120, 0, 100);
     polygonClaudiaValente.x = claudiaValente.posicionX + nuevoX;
     polygonClaudiaValente.y = claudiaValente.posicionY + nuevoY;
-    polygonClaudiaValente.size = tFondo / 8 + rClaudiaValente / 10;
+    polygonClaudiaValente.size = tFondo / 6 + rClaudiaValente / 10;
     polygonClaudiaValente.color = colorClaudiaValente;
     polygonClaudiaValente.sides = 25;
     polygonClaudiaValente.spin = 45 + frameCount / 4;
@@ -334,7 +334,7 @@ function draw() {
     let colorLeandroBarbeito = color(leandroBarbeito.valorMap, 120, 0, 100);
     polygonLeandroBarbeito.x = leandroBarbeito.posicionX + nuevoX;
     polygonLeandroBarbeito.y = leandroBarbeito.posicionY + nuevoY;
-    polygonLeandroBarbeito.size = tFondo / 8 + rLeandroBarbeito / 10;
+    polygonLeandroBarbeito.size = tFondo / 6 + rLeandroBarbeito / 10;
     polygonLeandroBarbeito.color = colorLeandroBarbeito;
     polygonLeandroBarbeito.sides = 25;
     polygonLeandroBarbeito.spin = 45 + frameCount / 5;
@@ -344,7 +344,7 @@ function draw() {
     let colorLupitaChavez = color(lupitaChavez.valorMap, 120, 0, 100);
     polygonLupitaChavez.x = lupitaChavez.posicionX + nuevoX;
     polygonLupitaChavez.y = lupitaChavez.posicionY + nuevoY;
-    polygonLupitaChavez.size = tFondo / 8 + rLupitaChavez / 10;
+    polygonLupitaChavez.size = tFondo / 6 + rLupitaChavez / 10;
     polygonLupitaChavez.color = colorLupitaChavez;
     polygonLupitaChavez.sides = 25;
     polygonLupitaChavez.spin = 45 + frameCount / 4;
@@ -354,7 +354,7 @@ function draw() {
     let colorLaHabana = color(bienalHabana.valorMap, 120, 0, 100);
     polygonLaHabana.x = bienalHabana.posicionX + nuevoX;
     polygonLaHabana.y = bienalHabana.posicionY + nuevoY;
-    polygonLaHabana.size = tFondo / 8 + rLaHabana / 10;
+    polygonLaHabana.size = tFondo / 6 + rLaHabana / 10;
     polygonLaHabana.color = colorLaHabana;
     polygonLaHabana.sides = 25;
     polygonLaHabana.spin = 45 + frameCount / 3;
@@ -364,7 +364,7 @@ function draw() {
     let colorMuruFusion = color(muruFusion.valorMap, 120, 0, 100);
     polygonMuruFusion.x = muruFusion.posicionX + nuevoX;
     polygonMuruFusion.y = muruFusion.posicionY + nuevoY;
-    polygonMuruFusion.size = tFondo / 8 + rMuruFusion / 10;
+    polygonMuruFusion.size = tFondo / 6 + rMuruFusion / 10;
     polygonMuruFusion.color = colorMuruFusion;
     polygonMuruFusion.sides = 25;
     polygonMuruFusion.spin = 45 + frameCount / 5;
