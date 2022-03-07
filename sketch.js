@@ -150,42 +150,42 @@ function setup() {
   // Modelos de mapa / menu
   mapModel = createSprite(100, 100);
   mapModel.addAnimation('normal', mapPin);
-  mapModel.scale = 0.25;
+  mapModel.scale = 0.18;
   mapModel.mouseActive = true;
  
   // Modelos de cada persona
   nicMottaModel = createSprite(100, 100);
   nicMottaModel.addAnimation('normal', gifBrus);
-  nicMottaModel.scale = 0.25;
+  nicMottaModel.scale = 0.4;
   nicMottaModel.mouseActive = true;
 
   claudiaValenteModel = createSprite(100, 100);
   claudiaValenteModel.addAnimation('normal', gifBrus);
-  claudiaValenteModel.scale = 0.25;
+  claudiaValenteModel.scale = 0.4;
   claudiaValenteModel.mouseActive = true;
 
   // Modelos de cada persona
   lupitaChavezModel = createSprite(100, 100);
   lupitaChavezModel.addAnimation('normal', gifBrus);
-  lupitaChavezModel.scale = 0.25;
+  lupitaChavezModel.scale = 0.4;
   lupitaChavezModel.mouseActive = true;
 
   // Modelos de cada persona
   leandroBarbeitoModel = createSprite(100, 100);
   leandroBarbeitoModel.addAnimation('normal', gifBrus);
-  leandroBarbeitoModel.scale = 0.25;
+  leandroBarbeitoModel.scale = 0.4;
   leandroBarbeitoModel.mouseActive = true;
 
   // Modelos de cada persona
   bienalHabanaModel = createSprite(100, 100);
   bienalHabanaModel.addAnimation('normal', gifBrus);
-  bienalHabanaModel.scale = 0.25;
+  bienalHabanaModel.scale = 0.4;
   bienalHabanaModel.mouseActive = true;
 
   // Modelos de cada persona
   muruFusionModel = createSprite(100, 100);
   muruFusionModel.addAnimation('normal', gifBrus);
-  muruFusionModel.scale = 0.25;
+  muruFusionModel.scale = 0.4;
   muruFusionModel.mouseActive = true;
 
 
