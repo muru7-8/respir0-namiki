@@ -30,11 +30,13 @@ let tMax = 500;
 let tFondo;
 let tEstado = false;
 
-let rNicMotta, rClaudiaValente, rLeandroBarbeito, rLupitaChavez, rLaHabana, rMuruFusion;
+let loading = true;
+
+let rNicMotta, rClaudiaValente, rLeandroBarbeito, rLupitaChavez, rLaHabana, rMuruFusion, rMapa;
 
 
 // Definir cada objeto con su informacion correspondiente, posicion en X, Y, offset, texto, color, etc
-var nicMotta = {
+let nicMotta = {
               nombre:"Nic Motta", 
               ciudad:"San Fernando", 
               provincia:"Buenos Aires", 
@@ -47,7 +49,7 @@ var nicMotta = {
               valorMap: 0,
               };
 
-var claudiaValente = {
+let claudiaValente = {
                 nombre:"Claudia Valente", 
                 ciudad:"Jose C. Paz", 
                 provincia:"Buenos Aires", 
@@ -58,7 +60,7 @@ var claudiaValente = {
                 posicionY: 200,
                 };
 
-var leandroBarbeito = {
+let leandroBarbeito = {
                 nombre:"Leandro Barbeito", 
                 ciudad:"Lomas del Mirador", 
                 provincia:"Buenos Aires", 
@@ -69,7 +71,7 @@ var leandroBarbeito = {
                 posicionY: 600,
                 };
 
-var lupitaChavez = {
+let lupitaChavez = {
                 nombre:"Lupita Chavez", 
                 ciudad:"Tepic", 
                 provincia:"Nayarit", 
@@ -82,7 +84,7 @@ var lupitaChavez = {
                 };
 
 
-var bienalHabana = {
+let bienalHabana = {
                   nombre:"Bienal de La Habana", 
                   ciudad:"", 
                   provincia:"La Habana", 
@@ -94,7 +96,7 @@ var bienalHabana = {
                   posicionY: -1500,
                   };
 
-var muruFusion = {
+let muruFusion = {
                   nombre:"MURU 7.8 - Fusion", 
                   ciudad:"Ciudad de Buenos Aires", 
                   provincia:"Buenos Aires", 
@@ -104,6 +106,19 @@ var muruFusion = {
                   texto: "",
                   posicionX: 500,
                   posicionY: 100,
+                  };
+
+
+let mapa = {
+                  nombre:"Ver mapa de dispositivos activos", 
+                  ciudad:"", 
+                  provincia:"", 
+                  pais:"",
+                  coordenadas: "",
+                  valorCo2: "",
+                  texto: "",
+                  posicionX: 700,
+                  posicionY: -300,
                   };
                   
 
@@ -116,6 +131,8 @@ let polygonClaudiaValente, polygonNicMotta, polygonLeandroBarbeito, polygonLupit
 function preload() {
  fondoSemilla = loadImage("./assets/fondoSemilla.png");
  sonidoFondo = loadSound('assets/sound/sonidoSemilla.mp3');
+ gifBrus = loadImage("./assets/brus.gif");
+ mapPin = loadImage("./assets/mapicon.png");
 }
 
 function setup() {
@@ -125,49 +142,55 @@ function setup() {
   rectMode(CENTER);
   strokeWeight(1);
   textLeading(18); // Espacio entre lineas de texto
-  textFont("MuseoModerno");
+  textFont("Exo");
   imageMode(CENTER);
   
   textAlign(CENTER);
+
+  // Modelos de mapa / menu
+  mapModel = createSprite(100, 100);
+  mapModel.addAnimation('normal', mapPin);
+  mapModel.scale = 0.25;
+  mapModel.mouseActive = true;
  
   // Modelos de cada persona
   nicMottaModel = createSprite(100, 100);
-  nicMottaModel.addAnimation('normal', 'assets/modeloAchira.gif');
-  nicMottaModel.scale = 0.2;
+  nicMottaModel.addAnimation('normal', gifBrus);
+  nicMottaModel.scale = 0.25;
   nicMottaModel.mouseActive = true;
 
   claudiaValenteModel = createSprite(100, 100);
-  claudiaValenteModel.addAnimation('normal', 'assets/modeloAchira.gif');
-  claudiaValenteModel.scale = 0.2;
+  claudiaValenteModel.addAnimation('normal', gifBrus);
+  claudiaValenteModel.scale = 0.25;
   claudiaValenteModel.mouseActive = true;
 
   // Modelos de cada persona
   lupitaChavezModel = createSprite(100, 100);
-  lupitaChavezModel.addAnimation('normal', 'assets/modeloAchira.gif');
-  lupitaChavezModel.scale = 0.2;
+  lupitaChavezModel.addAnimation('normal', gifBrus);
+  lupitaChavezModel.scale = 0.25;
   lupitaChavezModel.mouseActive = true;
 
   // Modelos de cada persona
   leandroBarbeitoModel = createSprite(100, 100);
-  leandroBarbeitoModel.addAnimation('normal', 'assets/modeloAchira.gif');
-  leandroBarbeitoModel.scale = 0.2;
+  leandroBarbeitoModel.addAnimation('normal', gifBrus);
+  leandroBarbeitoModel.scale = 0.25;
   leandroBarbeitoModel.mouseActive = true;
 
   // Modelos de cada persona
   bienalHabanaModel = createSprite(100, 100);
-  bienalHabanaModel.addAnimation('normal', 'assets/modeloAchira.gif');
-  bienalHabanaModel.scale = 0.2;
+  bienalHabanaModel.addAnimation('normal', gifBrus);
+  bienalHabanaModel.scale = 0.25;
   bienalHabanaModel.mouseActive = true;
 
   // Modelos de cada persona
   muruFusionModel = createSprite(100, 100);
-  muruFusionModel.addAnimation('normal', 'assets/modeloAchira.gif');
-  muruFusionModel.scale = 0.2;
+  muruFusionModel.addAnimation('normal', gifBrus);
+  muruFusionModel.scale = 0.25;
   muruFusionModel.mouseActive = true;
 
 
     // Initialize Firebase
-    var config = {
+    let config = {
       apiKey: "AIzaSyB72EJgyU1K8SAuNPgRtoaOJywraSFNByY",
       authDomain: "respir0-namiki.firebaseapp.com",
       databaseURL: "https://respir0-namiki-default-rtdb.firebaseio.com",
@@ -178,7 +201,7 @@ function setup() {
     firebase.initializeApp(config); 
     database = firebase.database();
     
-    var ref = database.ref('usuarios');
+    let ref = database.ref('usuarios');
     ref.on('value', gotData, errData);
 
   // 
@@ -193,6 +216,7 @@ function setup() {
   rLupitaChavez = random(-150, 150);
   rLaHabana = random(-150, 150);
   rMuruFusion = random(-150, 150);
+  rMap = random(-150, 150);
 
 
   setInterval(tModelo, 100);
@@ -255,6 +279,7 @@ function draw() {
     image(fondoSemilla, lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, tFondo + rLupitaChavez, tFondo + rLupitaChavez);
     image(fondoSemilla, bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, tFondo + rLaHabana, tFondo + rLaHabana);
     image(fondoSemilla, muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, tFondo + rMuruFusion, tFondo + rMuruFusion);
+    image(fondoSemilla, mapa.posicionX + nuevoX, mapa.posicionY + nuevoY, tFondo + rMap, tFondo + rMap);
     
     // CIRCULOS SEMAFOROS
     ellipse(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, 500);
@@ -273,6 +298,7 @@ function draw() {
     line(lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, nuevoX, nuevoY);
     line(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, nuevoX, nuevoY);
     line(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, nuevoX, nuevoY);
+    line(mapa.posicionX + nuevoX, mapa.posicionY + nuevoY, nuevoX, nuevoY);
     fill(80);
     ellipse(nuevoX, nuevoY, 20);
     noFill();
@@ -288,9 +314,9 @@ function draw() {
     let colorNicMotta = color(nicMotta.valorMap, 120, 0, 100);
     polygonNicMotta.x = nicMotta.posicionX + nuevoX;
     polygonNicMotta.y = nicMotta.posicionY + nuevoY;
-    polygonNicMotta.size = 81;
+    polygonNicMotta.size = tFondo / 8 + rNicMotta / 10;
     polygonNicMotta.color = colorNicMotta;
-    polygonNicMotta.sides = 5;
+    polygonNicMotta.sides = 25;
     polygonNicMotta.spin = 45 + frameCount / 3;
     polygonNicMotta.show();
 
@@ -298,9 +324,9 @@ function draw() {
     let colorClaudiaValente = color(claudiaValente.valorMap, 120, 0, 100);
     polygonClaudiaValente.x = claudiaValente.posicionX + nuevoX;
     polygonClaudiaValente.y = claudiaValente.posicionY + nuevoY;
-    polygonClaudiaValente.size = 75;
+    polygonClaudiaValente.size = tFondo / 8 + rClaudiaValente / 10;
     polygonClaudiaValente.color = colorClaudiaValente;
-    polygonClaudiaValente.sides = 5;
+    polygonClaudiaValente.sides = 25;
     polygonClaudiaValente.spin = 45 + frameCount / 4;
     polygonClaudiaValente.show();
 
@@ -308,9 +334,9 @@ function draw() {
     let colorLeandroBarbeito = color(leandroBarbeito.valorMap, 120, 0, 100);
     polygonLeandroBarbeito.x = leandroBarbeito.posicionX + nuevoX;
     polygonLeandroBarbeito.y = leandroBarbeito.posicionY + nuevoY;
-    polygonLeandroBarbeito.size = 76;
+    polygonLeandroBarbeito.size = tFondo / 8 + rLeandroBarbeito / 10;
     polygonLeandroBarbeito.color = colorLeandroBarbeito;
-    polygonLeandroBarbeito.sides = 5;
+    polygonLeandroBarbeito.sides = 25;
     polygonLeandroBarbeito.spin = 45 + frameCount / 5;
     polygonLeandroBarbeito.show();
 
@@ -318,9 +344,9 @@ function draw() {
     let colorLupitaChavez = color(lupitaChavez.valorMap, 120, 0, 100);
     polygonLupitaChavez.x = lupitaChavez.posicionX + nuevoX;
     polygonLupitaChavez.y = lupitaChavez.posicionY + nuevoY;
-    polygonLupitaChavez.size = 81;
+    polygonLupitaChavez.size = tFondo / 8 + rLupitaChavez / 10;
     polygonLupitaChavez.color = colorLupitaChavez;
-    polygonLupitaChavez.sides = 5;
+    polygonLupitaChavez.sides = 25;
     polygonLupitaChavez.spin = 45 + frameCount / 4;
     polygonLupitaChavez.show();
 
@@ -328,9 +354,9 @@ function draw() {
     let colorLaHabana = color(bienalHabana.valorMap, 120, 0, 100);
     polygonLaHabana.x = bienalHabana.posicionX + nuevoX;
     polygonLaHabana.y = bienalHabana.posicionY + nuevoY;
-    polygonLaHabana.size = 81;
+    polygonLaHabana.size = tFondo / 8 + rLaHabana / 10;
     polygonLaHabana.color = colorLaHabana;
-    polygonLaHabana.sides = 5;
+    polygonLaHabana.sides = 25;
     polygonLaHabana.spin = 45 + frameCount / 3;
     polygonLaHabana.show();
 
@@ -338,11 +364,13 @@ function draw() {
     let colorMuruFusion = color(muruFusion.valorMap, 120, 0, 100);
     polygonMuruFusion.x = muruFusion.posicionX + nuevoX;
     polygonMuruFusion.y = muruFusion.posicionY + nuevoY;
-    polygonMuruFusion.size = 72;
+    polygonMuruFusion.size = tFondo / 8 + rMuruFusion / 10;
     polygonMuruFusion.color = colorMuruFusion;
-    polygonMuruFusion.sides = 5;
-    polygonMuruFusion.spin = 45 + frameCount / 3.5;
+    polygonMuruFusion.sides = 25;
+    polygonMuruFusion.spin = 45 + frameCount / 5;
     polygonMuruFusion.show();
+
+
 
 
     // Color de los textos
@@ -363,24 +391,25 @@ function draw() {
         /// MEDIDOR CO2
         let alfa = 200;
         fill(200, alfa);
-        text("CO2", windowWidth * 0.90, windowHeight * 0.19);
+        text("CO2", windowWidth * 0.95, windowHeight * 0.19);
     
         fill(200, 0, 0, alfa);
-        rect(windowWidth * 0.9, windowHeight * 0.36, 3, 400/3);
-        text("10000 ppm", windowWidth * 0.90, windowHeight * 0.23);
+        rect(windowWidth * 0.95, windowHeight * 0.36, 3, 400/3);
+        text("10000 ppm", windowWidth * 0.95, windowHeight * 0.23);
     
         fill(255, 200, 0, alfa)
-        rect(windowWidth * 0.9, windowHeight * 0.505, 3, 400/3);
+        rect(windowWidth * 0.95, windowHeight * 0.505, 3, 400/3);
     
         fill(100, 150, 0, alfa)
-        rect(windowWidth * 0.9, windowHeight * 0.65, 3, 400/3);
-        text("400 ppm", windowWidth * 0.9, windowHeight * 0.8);
+        rect(windowWidth * 0.95, windowHeight * 0.65, 3, 400/3);
+        text("400 ppm", windowWidth * 0.95, windowHeight * 0.8);
     
         ///
 
 
     // Nodos dibujados
-    textStyle(NORMAL)
+    textStyle(BOLD)
+    textAlign(LEFT)
     textSize(15)
 
     text(nicMotta.nombre + "\n" + nicMotta.ciudad + "\n" + nicMotta.provincia + "\n" + nicMotta.pais + "\n" + "Valor Co2: " + nicMotta.valorCo2,
@@ -410,6 +439,11 @@ function draw() {
 
     text(muruFusion.nombre + "\n" + muruFusion.ciudad + "\n" + muruFusion.provincia + "\n" + muruFusion.pais + "\n" + "Valor Co2: " + muruFusion.valorCo2,
          muruFusion.posicionX + nuevoX + xTexto, muruFusion.posicionY + nuevoY + yTexto,
+         tamañoTexto, tamañoTexto
+         );
+
+    text(mapa.nombre + "\n",
+         mapa.posicionX + nuevoX + xTexto, mapa.posicionY + nuevoY + yTexto,
          tamañoTexto, tamañoTexto
          );
 
@@ -455,10 +489,14 @@ function draw() {
       // Abrir pop-up con el texto de cara persona
     }
 
-    drawSprites();
-   
-    
+    mapModel.position.x = mapa.posicionX + nuevoX;
+    mapModel.position.y = mapa.posicionY + nuevoY;
 
+    if(mapModel.mouseIsPressed){
+      window.location.href = "./mapa.html";
+    }
+
+    drawSprites();
     
 
 }
@@ -490,6 +528,21 @@ function keyPressed(){  // Reset / poner un boton para volver al centro con algu
  
 }
 
+let sonido = true;
+
+function playSound(){
+
+  sonido = !sonido;
+
+  if (sonido == true) {
+    sonidoFondo.loop();
+  }
+  else {
+    sonidoFondo.stop();
+  }
+  
+}
+
 function resetMap(){
 
   nuevoX = width / 2.0;
@@ -498,7 +551,7 @@ function resetMap(){
 
 let estadoMenu = true;
 function mostrarMenu(){
-  var menuRosa = document.getElementById('menuRosa');
+  let menuRosa = document.getElementById('menuRosa');
 
   estadoMenu = !estadoMenu;
 
@@ -533,7 +586,6 @@ function tModelo(){
   }
 
 }
-
 
 
 	document.oncontextmenu = function(){return false}

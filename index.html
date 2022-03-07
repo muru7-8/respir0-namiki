@@ -8,9 +8,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
@@ -23,74 +21,21 @@
     <title>Respir0 Namiki</title>
 </head>
 
-<body style="font-family: 'MuseoModerno', cursive;" class="bg-black">
+<body class="bg-black">
 
+<div>
   <div class="absolute bg-gray-500 m-2 p-1 rounded-full w-12 hover:bg-gray-400">
     <a href="#" onclick="resetMap()">
       <img src="assets/center.svg" alt="Centrar mapa">
     </a>
   </div>
 
-
-  <div id="menuRosa" class="absolute w-1/2">
-    
-  </div>
-
-
-
-
-
-
-
-
-  <div id="circularMenu" class="circular-menu mb-3">
-
-    <a class="floating-btn hover:bg-gray-400" onclick="document.getElementById('circularMenu').classList.toggle('active');">
-      <i class="fa fa-plus">
-        <img src="assets/rosavientos.svg" alt="">
-      </i>
+  <div class="absolute bg-gray-500 m-2 ml-16 p-1 rounded-full w-12 hover:bg-gray-400">
+    <a href="#" onclick="playSound()">
+      <img src="assets/speaker.svg" alt="Activar / Desactivar sonido">
     </a>
-  
-    <menu class="items-wrapper">
-     
-      <a href="instructivo.html" class="menu-item fa fa-twitter">
-        <img src="/assets/menu-iconos/Semilla.gif" alt="">
-      </a>
-      <a href="visualizaciondedatos.html" class="menu-item fa fa-google-plus">
-        <img src="/assets/menu-iconos/T.gif" alt="">
-      </a>
-      <a href="tienda.html" class="menu-item fa fa-linkedin">
-        <img src="/assets/menu-iconos/cristal1.gif" alt="">
-      </a>
-    </menu>
-  
   </div>
-  
-  
-  <div id="circularMenu1" class="circular-menu circular-menu-left mb-3">
-  
-    <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
-      <i class="fa fa-bars"></i>
-      <img src="assets/rosavientos.svg" alt="">
-    </a>
-  
-    <menu class="items-wrapper">
-      <a href="acercade.html" class="menu-item fa fa-home">
-        <img src="/assets/menu-iconos/AT.gif" alt="">
-      </a>
-      <a href="proyecto.html" class="menu-item fa fa-user">
-        <img src="/assets/menu-iconos/BrusBrus.gif" alt="">
-      </a>
-      <a href="mapa.html" class="menu-item fa fa-pie-chart">
-        <img src="/assets/menu-iconos/Gus.gif" alt="">
-      </a>
-      <a href="bitacora.html" class="menu-item fa fa-cog">
-        <img src="/assets/menu-iconos/P.gif" alt="">
-      </a>
-    </menu>
-  
-  </div>
-
+</div>
 
   <script type='text/javascript'>
     document.oncontextmenu = function(){return false}

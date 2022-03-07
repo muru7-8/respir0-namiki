@@ -1,3 +1,4 @@
+
 canvas {
     display: block;
     overscroll-behavior-y: contain;
@@ -9,7 +10,7 @@ canvas {
 
 
   body {
-    background-color: #EDEDED;
+    font-family: 'Exo', sans-serif;
   }
   .circular-menu {
     position: fixed;
