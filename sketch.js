@@ -3,6 +3,22 @@
 // 2021
 // MURU7.8
 
+// TODO -> Loading de la pagina
+// TODO -> Refactorizar codigo
+// TODO -> Que hacer con los nodos que ya no estan activos?
+
+
+// * Colores
+// 400 -> 51, 153, 0
+// 1000 ->  153, 204, 51
+// 2000 -> 255, 204, 0
+// 3000 -> 255, 153, 102
+// 4000 -> 204, 51, 0
+// +4000 -> 255, 0, 0
+
+// Constantes de color
+const colorFondo = 0
+
 // Configuracion navegacion nodos
 let nuevoX;
 let nuevoY;
@@ -17,122 +33,203 @@ let yTexto = 40;
 let tamañoTexto = 150;
 
 // Texto inicial - pregunta
-let textoInicial = "Ella nos acaricia, nos conecta y nos mantiene vivxs.";
+let textoInicial = "Ella nos acaricia, nos conecta y nos mantiene con vida.";
 
 // Footer
-let footer = "MURU 7.8 | Respir0 Namiki | v 1.0 | 2021";
+let textoFooter = "MURU 7.8 | Respir0 Namiki | v 2.0 | 2022";
 
 let valorMin = 400;
 let valorMax = 1000;
 
 let tMin = 250;
-let tMax = 500;
-let tFondo;
-let tEstado = false;
+let maxSize = 500;
+let sizeFondo;
+let estadoFondo = false;
 
 let loading = true;
 
 let rNicMotta, rClaudiaValente, rLeandroBarbeito, rLupitaChavez, rLaHabana, rMuruFusion, rMapa;
 
+const datosMapa = [
+  { nombre:"Nic Motta", 
+    ciudad:"San Fernando", 
+    provincia:"Buenos Aires", 
+    pais:"Argentina",
+    coordenadas: "",
+    valorCo2: 1124,
+    texto: "",
+    posicionX: -200,
+    posicionY: -300,
+    valorMap: 0,
+    dispositivo: 'dispositivo-1'
+  },
+  { nombre:"Claudia Valente", 
+    ciudad:"Jose C. Paz", 
+    provincia:"Buenos Aires", 
+    pais:"Argentina",
+    coordenadas: "",
+    valorCo2: 480,
+    posicionX: -1000,
+    posicionY: 200,
+    dispositivo: 'dispositivo-1'
+  },
+  { nombre:"Leandro Barbeito", 
+    ciudad:"Lomas del Mirador", 
+    provincia:"Buenos Aires", 
+    pais:"Argentina",
+    coordenadas: "",
+    valorCo2: 665,
+    posicionX: 300,
+    posicionY: 600,
+    dispositivo: 'dispositivo-1'
+  },
+  { nombre:"Lupita Chavez", 
+    ciudad:"Tepic", 
+    provincia:"Nayarit", 
+    pais:"Mexico",
+    coordenadas: "",
+    valorCo2: 1200,
+    texto: "",
+    posicionX: -1000,
+    posicionY: -1000,
+    dispositivo: 'dispositivo-1'
+  },
+  { nombre:"Bienal de La Habana", 
+    ciudad:"", 
+    provincia:"La Habana", 
+    pais:"Cuba",
+    coordenadas: "",
+    valorCo2: 567,
+    texto: "",
+    posicionX: -500,
+    posicionY: -1500,
+    dispositivo: 'dispositivo-1'
+  },
+  { nombre:"MURU 7.8 - Fusion", 
+    ciudad:"Ciudad de Buenos Aires", 
+    provincia:"Buenos Aires", 
+    pais:"Argentina",
+    coordenadas: "",
+    valorCo2: "",
+    texto: "",
+    posicionX: 500,
+    posicionY: 100,
+    dispositivo: 'dispositivo-1'
+  },
+  { nombre:"Ver mapa de dispositivos activos", 
+    ciudad:"", 
+    provincia:"", 
+    pais:"",
+    coordenadas: "",
+    valorCo2: "",
+    texto: "",
+    posicionX: 700,
+    posicionY: -300,
+    dispositivo: 'dispositivo-1'
+  },
+]
+
 
 // Definir cada objeto con su informacion correspondiente, posicion en X, Y, offset, texto, color, etc
 let nicMotta = {
-              nombre:"Nic Motta", 
-              ciudad:"San Fernando", 
-              provincia:"Buenos Aires", 
-              pais:"Argentina",
-              coordenadas: "",
-              valorCo2: 1124,
-              texto: "",
-              posicionX: -200,
-              posicionY: -300,
-              valorMap: 0,
-              };
+  nombre:"Nic Motta", 
+  ciudad:"San Fernando", 
+  provincia:"Buenos Aires", 
+  pais:"Argentina",
+  coordenadas: "",
+  valorCo2: 1124,
+  texto: "",
+  posicionX: -200,
+  posicionY: -300,
+  valorMap: 0,
+  dispositivo: 'dispositivo-1'
+};
 
 let claudiaValente = {
-                nombre:"Claudia Valente", 
-                ciudad:"Jose C. Paz", 
-                provincia:"Buenos Aires", 
-                pais:"Argentina",
-                coordenadas: "",
-                valorCo2: 480,
-                posicionX: -1000,
-                posicionY: 200,
-                };
+  nombre:"Claudia Valente", 
+  ciudad:"Jose C. Paz", 
+  provincia:"Buenos Aires", 
+  pais:"Argentina",
+  coordenadas: "",
+  valorCo2: 480,
+  posicionX: -1000,
+  posicionY: 200,
+};
 
 let leandroBarbeito = {
-                nombre:"Leandro Barbeito", 
-                ciudad:"Lomas del Mirador", 
-                provincia:"Buenos Aires", 
-                pais:"Argentina",
-                coordenadas: "",
-                valorCo2: 665,
-                posicionX: 300,
-                posicionY: 600,
-                };
+  nombre:"Leandro Barbeito", 
+  ciudad:"Lomas del Mirador", 
+  provincia:"Buenos Aires", 
+  pais:"Argentina",
+  coordenadas: "",
+  valorCo2: 665,
+  posicionX: 300,
+  posicionY: 600,
+};
 
 let lupitaChavez = {
-                nombre:"Lupita Chavez", 
-                ciudad:"Tepic", 
-                provincia:"Nayarit", 
-                pais:"Mexico",
-                coordenadas: "",
-                valorCo2: 1200,
-                texto: "",
-                posicionX: -1000,
-                posicionY: -1000,
-                };
+  nombre:"Lupita Chavez", 
+  ciudad:"Tepic", 
+  provincia:"Nayarit", 
+  pais:"Mexico",
+  coordenadas: "",
+  valorCo2: 1200,
+  texto: "",
+  posicionX: -1000,
+  posicionY: -1000,
+};
 
 
 let bienalHabana = {
-                  nombre:"Bienal de La Habana", 
-                  ciudad:"", 
-                  provincia:"La Habana", 
-                  pais:"Cuba",
-                  coordenadas: "",
-                  valorCo2: 567,
-                  texto: "",
-                  posicionX: -500,
-                  posicionY: -1500,
-                  };
+  nombre:"Bienal de La Habana", 
+  ciudad:"", 
+  provincia:"La Habana", 
+  pais:"Cuba",
+  coordenadas: "",
+  valorCo2: 567,
+  texto: "",
+  posicionX: -500,
+  posicionY: -1500,
+};
 
 let muruFusion = {
-                  nombre:"MURU 7.8 - Fusion", 
-                  ciudad:"Ciudad de Buenos Aires", 
-                  provincia:"Buenos Aires", 
-                  pais:"Argentina",
-                  coordenadas: "",
-                  valorCo2: "",
-                  texto: "",
-                  posicionX: 500,
-                  posicionY: 100,
-                  };
+  nombre:"MURU 7.8 - Fusion", 
+  ciudad:"Ciudad de Buenos Aires", 
+  provincia:"Buenos Aires", 
+  pais:"Argentina",
+  coordenadas: "",
+  valorCo2: "",
+  texto: "",
+  posicionX: 500,
+  posicionY: 100,
+};
 
 
 let mapa = {
-                  nombre:"Ver mapa de dispositivos activos", 
-                  ciudad:"", 
-                  provincia:"", 
-                  pais:"",
-                  coordenadas: "",
-                  valorCo2: "",
-                  texto: "",
-                  posicionX: 700,
-                  posicionY: -300,
-                  };
+  nombre:"Ver mapa de dispositivos activos", 
+  ciudad:"", 
+  provincia:"", 
+  pais:"",
+  coordenadas: "",
+  valorCo2: "",
+  texto: "",
+  posicionX: 700,
+  posicionY: -300,
+};
                   
-
 let fondoSemilla;
 let menuUno, menuDos, menuTres, menuCuatro, menuCinco, menuSeis, menuSiete, menuOcho;
-
 let polygonClaudiaValente, polygonNicMotta, polygonLeandroBarbeito, polygonLupitaChavez, polygonMuruFusion, polygonLaHabana;
 
-
 function preload() {
- fondoSemilla = loadImage("./assets/fondoSemilla.png");
- sonidoFondo = loadSound('assets/sound/sonidoSemilla.mp3');
- gifBrus = loadImage("./assets/brus.gif");
- mapPin = loadImage("./assets/mapicon.png");
+  fondoSemilla = loadImage("./assets/fondoSemilla.png");
+  sonidoFondo = loadSound('assets/sound/sonidoSemilla.mp3');
+  gifBrus = loadImage("./assets/brus.gif");
+  mapPin = loadImage("./assets/mapicon.png");
+}
+
+function afterLoad(){
+  loading = false
 }
 
 function setup() {
@@ -189,27 +286,26 @@ function setup() {
   muruFusionModel.mouseActive = true;
 
 
-    // Initialize Firebase
-    let config = {
-      apiKey: "AIzaSyB72EJgyU1K8SAuNPgRtoaOJywraSFNByY",
-      authDomain: "respir0-namiki.firebaseapp.com",
-      databaseURL: "https://respir0-namiki-default-rtdb.firebaseio.com",
-      projectId: "respir0-namiki",
-      storageBucket: "",
-      messagingSenderId: ""
+  // ! SACAR DE ACA
+  // Initialize Firebase
+  let config = {
+    apiKey: "AIzaSyB72EJgyU1K8SAuNPgRtoaOJywraSFNByY",
+    authDomain: "respir0-namiki.firebaseapp.com",
+    databaseURL: "https://respir0-namiki-default-rtdb.firebaseio.com",
+    projectId: "respir0-namiki",
+    storageBucket: "",
+    messagingSenderId: ""
   }
-    firebase.initializeApp(config); 
-    database = firebase.database();
     
-    let ref = database.ref('usuarios');
-    ref.on('value', gotData, errData);
+  firebase.initializeApp(config); 
+  database = firebase.database();
+    
+  let ref = database.ref('data');
+  ref.on('value', gotData, errData);
 
-  // 
-
-  tFondo = tMin;
+  sizeFondo = tMin;
 
   // RANDOMS UTILES
-
   rClaudiaValente = random(-150, 150);
   rNicMotta = random(-150, 150);
   rLeandroBarbeito = random(-150, 150);
@@ -218,11 +314,9 @@ function setup() {
   rMuruFusion = random(-150, 150);
   rMap = random(-150, 150);
 
-
-  setInterval(tModelo, 100);
+  setInterval(modeloGiroFondo, 100);
 
   sonidoFondo.loop();
-
 
   polygonClaudiaValente = new Polygon();
   polygonNicMotta = new Polygon();
@@ -231,291 +325,232 @@ function setup() {
   polygonMuruFusion = new Polygon();
   polygonLaHabana = new Polygon();
   
-  }
+}
   
-  function gotData (data) {
-      //console.log(data.val());
-    var usuarios = data.val();
-      var keys = Object.keys(usuarios);
-      //console.log(keys);
-    
-    for (var i = 0; i < keys.length; i++) {
-      var nombres = keys[i];
-        var co2 = usuarios[nombres].nombre;
-        //console.log(nombres + " / " + co2);	
-          
-      }
-    //console.log(usuarios[keys[1]]);
-    muruFusion.valorCo2 = usuarios[keys[1]];
-    //console.log(nicMotta.valorCo2);
-  }
+function gotData (data) {
+  let dispositivos = data.val();
+  let keys = Object.keys(dispositivos);
   
-  function errData(err) {
+  let kk = dispositivos['dispositivo-1']
+  let indexDB = Object.keys(kk)
+  let lastIndex = indexDB[indexDB.length - 1]
+
+  datosMapa.map( item => {
+    item.valorCo2 = dispositivos[item.dispositivo][lastIndex].co2
+  })
+}
+  
+function errData(err) {
     console.log('Error!');
       console.log(err);
-  }
+}
 
-  function windowResized() {
+function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-  }
+}
 
 
 function draw() {
-    background(0);
-    
-    
+  background(colorFondo);
+  noFill();
+  noStroke();
 
-    noFill();
-    noStroke();
+  //Refactorizado
+  datosMapa.map(( item ) => {
+    image(fondoSemilla,
+      item.posicionX + nuevoX,
+      item.posicionY + nuevoY,
+      sizeFondo + rNicMotta,
+      sizeFondo + rNicMotta
+    )
 
-
-    // TAMAÑO MODELOS
-
-
-    // FONDOS MODELOS
-    image(fondoSemilla, nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, tFondo + rNicMotta, tFondo + rNicMotta);
-    image(fondoSemilla, claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY, tFondo + rClaudiaValente, tFondo + rClaudiaValente);
-    image(fondoSemilla, leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, tFondo + rLeandroBarbeito, tFondo + rLeandroBarbeito);
-    image(fondoSemilla, lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, tFondo + rLupitaChavez, tFondo + rLupitaChavez);
-    image(fondoSemilla, bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, tFondo + rLaHabana, tFondo + rLaHabana);
-    image(fondoSemilla, muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, tFondo + rMuruFusion, tFondo + rMuruFusion);
-    image(fondoSemilla, mapa.posicionX + nuevoX, mapa.posicionY + nuevoY, tFondo + rMap, tFondo + rMap);
-    
-    // CIRCULOS SEMAFOROS
-    ellipse(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, 500);
-    ellipse(claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY, 500);
-    ellipse(leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, 500);
-    ellipse(lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, 500);
-    ellipse(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, 500);
-    ellipse(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, 500);
-
-
-    // LINEAS CONECTORAS
-    stroke(80, 100);
-    line(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, nuevoX, nuevoY);
-    line(claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY, nuevoX, nuevoY);
-    line(leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, nuevoX, nuevoY);
-    line(lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, nuevoX, nuevoY);
-    line(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, nuevoX, nuevoY);
-    line(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, nuevoX, nuevoY);
-    line(mapa.posicionX + nuevoX, mapa.posicionY + nuevoY, nuevoX, nuevoY);
-    fill(80);
-    ellipse(nuevoX, nuevoY, 20);
-    noFill();
-    noStroke();
-
-
-    // Centro de espacio virtual - pregunta
-    text(textoInicial, nuevoX, nuevoY, tamañoTexto, tamañoTexto);
+    ellipse(
+      item.posicionX + nuevoX, 
+      item.posicionY + nuevoY,
+      500
+    )
+  })
   
+  // LINEAS CONECTORAS
+  stroke(80, 100);
+  line(nicMotta.posicionX + nuevoX, nicMotta.posicionY + nuevoY, nuevoX, nuevoY);
+  line(claudiaValente.posicionX + nuevoX, claudiaValente.posicionY + nuevoY, nuevoX, nuevoY);
+  line(leandroBarbeito.posicionX + nuevoX, leandroBarbeito.posicionY + nuevoY, nuevoX, nuevoY);
+  line(lupitaChavez.posicionX + nuevoX, lupitaChavez.posicionY + nuevoY, nuevoX, nuevoY);
+  line(bienalHabana.posicionX + nuevoX, bienalHabana.posicionY + nuevoY, nuevoX, nuevoY);
+  line(muruFusion.posicionX + nuevoX, muruFusion.posicionY + nuevoY, nuevoX, nuevoY);
+  line(mapa.posicionX + nuevoX, mapa.posicionY + nuevoY, nuevoX, nuevoY);
+  fill(80);
+  ellipse(nuevoX, nuevoY, 20);
+  noFill();
+  noStroke();
 
-    // Colores semaforo para CO2
-    nicMotta.valorMap = map(nicMotta.valorCo2, valorMin, valorMax, 0, 255);
-    let colorNicMotta = color(nicMotta.valorMap, 120, 0, 100);
-    polygonNicMotta.x = nicMotta.posicionX + nuevoX;
-    polygonNicMotta.y = nicMotta.posicionY + nuevoY;
-    polygonNicMotta.size = tFondo / 6 + rNicMotta / 10;
-    polygonNicMotta.color = colorNicMotta;
-    polygonNicMotta.sides = 25;
-    polygonNicMotta.spin = 45 + frameCount / 3;
-    polygonNicMotta.show();
+  // Centro de espacio virtual - pregunta
+  text(textoInicial, nuevoX, nuevoY, tamañoTexto, tamañoTexto);
+  
+  /*
+  // Colores semaforo para CO2
+  nicMotta.valorMap = map(nicMotta.valorCo2, valorMin, valorMax, 0, 255);
+  let colorNicMotta = color(nicMotta.valorMap, 120, 0, 100);
+  polygonNicMotta.x = nicMotta.posicionX + nuevoX;
+  polygonNicMotta.y = nicMotta.posicionY + nuevoY;
+  polygonNicMotta.size = sizeFondo / 6 + rNicMotta / 10;
+  polygonNicMotta.color = colorNicMotta;
+  polygonNicMotta.sides = 25;
+  polygonNicMotta.spin = 45 + frameCount / 3;
+  polygonNicMotta.show();
 
-    claudiaValente.valorMap = map(claudiaValente.valorCo2, valorMin, valorMax, 0, 255);
-    let colorClaudiaValente = color(claudiaValente.valorMap, 120, 0, 100);
-    polygonClaudiaValente.x = claudiaValente.posicionX + nuevoX;
-    polygonClaudiaValente.y = claudiaValente.posicionY + nuevoY;
-    polygonClaudiaValente.size = tFondo / 6 + rClaudiaValente / 10;
-    polygonClaudiaValente.color = colorClaudiaValente;
-    polygonClaudiaValente.sides = 25;
-    polygonClaudiaValente.spin = 45 + frameCount / 4;
-    polygonClaudiaValente.show();
+  claudiaValente.valorMap = map(claudiaValente.valorCo2, valorMin, valorMax, 0, 255);
+  let colorClaudiaValente = color(claudiaValente.valorMap, 120, 0, 100);
+  polygonClaudiaValente.x = claudiaValente.posicionX + nuevoX;
+  polygonClaudiaValente.y = claudiaValente.posicionY + nuevoY;
+  polygonClaudiaValente.size = sizeFondo / 6 + rClaudiaValente / 10;
+  polygonClaudiaValente.color = colorClaudiaValente;
+  polygonClaudiaValente.sides = 25;
+  polygonClaudiaValente.spin = 45 + frameCount / 4;
+  polygonClaudiaValente.show();
 
-    leandroBarbeito.valorMap = map(leandroBarbeito.valorCo2, valorMin, valorMax, 0, 255);
-    let colorLeandroBarbeito = color(leandroBarbeito.valorMap, 120, 0, 100);
-    polygonLeandroBarbeito.x = leandroBarbeito.posicionX + nuevoX;
-    polygonLeandroBarbeito.y = leandroBarbeito.posicionY + nuevoY;
-    polygonLeandroBarbeito.size = tFondo / 6 + rLeandroBarbeito / 10;
-    polygonLeandroBarbeito.color = colorLeandroBarbeito;
-    polygonLeandroBarbeito.sides = 25;
-    polygonLeandroBarbeito.spin = 45 + frameCount / 5;
-    polygonLeandroBarbeito.show();
+  leandroBarbeito.valorMap = map(leandroBarbeito.valorCo2, valorMin, valorMax, 0, 255);
+  let colorLeandroBarbeito = color(leandroBarbeito.valorMap, 120, 0, 100);
+  polygonLeandroBarbeito.x = leandroBarbeito.posicionX + nuevoX;
+  polygonLeandroBarbeito.y = leandroBarbeito.posicionY + nuevoY;
+  polygonLeandroBarbeito.size = sizeFondo / 6 + rLeandroBarbeito / 10;
+  polygonLeandroBarbeito.color = colorLeandroBarbeito;
+  polygonLeandroBarbeito.sides = 25;
+  polygonLeandroBarbeito.spin = 45 + frameCount / 5;
+  polygonLeandroBarbeito.show();
 
-    lupitaChavez.valorMap = map(lupitaChavez.valorCo2, valorMin, valorMax, 0, 255);
-    let colorLupitaChavez = color(lupitaChavez.valorMap, 120, 0, 100);
-    polygonLupitaChavez.x = lupitaChavez.posicionX + nuevoX;
-    polygonLupitaChavez.y = lupitaChavez.posicionY + nuevoY;
-    polygonLupitaChavez.size = tFondo / 6 + rLupitaChavez / 10;
-    polygonLupitaChavez.color = colorLupitaChavez;
-    polygonLupitaChavez.sides = 25;
-    polygonLupitaChavez.spin = 45 + frameCount / 4;
-    polygonLupitaChavez.show();
+  lupitaChavez.valorMap = map(lupitaChavez.valorCo2, valorMin, valorMax, 0, 255);
+  let colorLupitaChavez = color(lupitaChavez.valorMap, 120, 0, 100);
+  polygonLupitaChavez.x = lupitaChavez.posicionX + nuevoX;
+  polygonLupitaChavez.y = lupitaChavez.posicionY + nuevoY;
+  polygonLupitaChavez.size = sizeFondo / 6 + rLupitaChavez / 10;
+  polygonLupitaChavez.color = colorLupitaChavez;
+  polygonLupitaChavez.sides = 25;
+  polygonLupitaChavez.spin = 45 + frameCount / 4;
+  polygonLupitaChavez.show();
 
-    bienalHabana.valorMap = map(bienalHabana.valorCo2, valorMin, valorMax, 0, 255);
-    let colorLaHabana = color(bienalHabana.valorMap, 120, 0, 100);
-    polygonLaHabana.x = bienalHabana.posicionX + nuevoX;
-    polygonLaHabana.y = bienalHabana.posicionY + nuevoY;
-    polygonLaHabana.size = tFondo / 6 + rLaHabana / 10;
-    polygonLaHabana.color = colorLaHabana;
-    polygonLaHabana.sides = 25;
-    polygonLaHabana.spin = 45 + frameCount / 3;
-    polygonLaHabana.show();
+  bienalHabana.valorMap = map(bienalHabana.valorCo2, valorMin, valorMax, 0, 255);
+  let colorLaHabana = color(bienalHabana.valorMap, 120, 0, 100);
+  polygonLaHabana.x = bienalHabana.posicionX + nuevoX;
+  polygonLaHabana.y = bienalHabana.posicionY + nuevoY;
+  polygonLaHabana.size = sizeFondo / 6 + rLaHabana / 10;
+  polygonLaHabana.color = colorLaHabana;
+  polygonLaHabana.sides = 25;
+  polygonLaHabana.spin = 45 + frameCount / 3;
+  polygonLaHabana.show();
 
-    muruFusion.valorMap = map(muruFusion.valorCo2, valorMin, valorMax, 0, 255);
-    let colorMuruFusion = color(muruFusion.valorMap, 120, 0, 100);
-    polygonMuruFusion.x = muruFusion.posicionX + nuevoX;
-    polygonMuruFusion.y = muruFusion.posicionY + nuevoY;
-    polygonMuruFusion.size = tFondo / 6 + rMuruFusion / 10;
-    polygonMuruFusion.color = colorMuruFusion;
-    polygonMuruFusion.sides = 25;
-    polygonMuruFusion.spin = 45 + frameCount / 5;
-    polygonMuruFusion.show();
+  muruFusion.valorMap = map(muruFusion.valorCo2, valorMin, valorMax, 0, 255);
+  let colorMuruFusion = color(muruFusion.valorMap, 120, 0, 100);
+  polygonMuruFusion.x = muruFusion.posicionX + nuevoX;
+  polygonMuruFusion.y = muruFusion.posicionY + nuevoY;
+  polygonMuruFusion.size = sizeFondo / 6 + rMuruFusion / 10;
+  polygonMuruFusion.color = colorMuruFusion;
+  polygonMuruFusion.sides = 25;
+  polygonMuruFusion.spin = 45 + frameCount / 5;
+  polygonMuruFusion.show();
+  */
 
+  // Color de los textos
+  fill(200);
 
+  // Footer informacion MURU 7.8
+  textStyle(NORMAL);
+  textSize(12);
+  text(textoFooter, windowWidth / 2, windowHeight - 10);
 
+  // Centro de espacio virtual - pregunta
+  textStyle(BOLD);
+  textSize(18)
+  text(textoInicial, nuevoX, nuevoY, tamañoTexto + 180, tamañoTexto)
 
-    // Color de los textos
-    fill(200);
+  // Nodos dibujados
+  textStyle(BOLD)
+  textAlign(LEFT)
+  textSize(15)
 
-    // Footer informacion MURU 7.8
-    textStyle(NORMAL);
-    textSize(12);
-    text(footer, windowWidth / 2, windowHeight - 10);
+  datosMapa.map( item => {
+    text(
+      item.nombre + "\n" + 
+      item.ciudad + "\n" + 
+      item.provincia + "\n" + 
+      item.pais + "\n" + 
+      "Valor Co2: " + 
+      item.valorCo2,
+      item.posicionX + 
+      nuevoX + xTexto, 
+      item.posicionY + 
+      nuevoY + yTexto,
+      tamañoTexto, 
+      tamañoTexto
+    )
+  })
 
+  nicMottaModel.position.x = nicMotta.posicionX + nuevoX;
+  nicMottaModel.position.y = nicMotta.posicionY + nuevoY;
 
-    // Centro de espacio virtual - pregunta
-    textStyle(BOLD);
-    textSize(18)
-    text(textoInicial, nuevoX, nuevoY, tamañoTexto + 180, tamañoTexto)
+  if(nicMottaModel.mouseIsPressed) {
+    // Abrir pop-up con el texto de cada persona
+  }
 
+  claudiaValenteModel.position.x = claudiaValente.posicionX + nuevoX;
+  claudiaValenteModel.position.y = claudiaValente.posicionY + nuevoY;
 
-        /// MEDIDOR CO2
-        let alfa = 200;
-        fill(200, alfa);
-        text("CO2", windowWidth * 0.95, windowHeight * 0.19);
-    
-        fill(200, 0, 0, alfa);
-        rect(windowWidth * 0.95, windowHeight * 0.36, 3, 400/3);
-        text("10000 ppm", windowWidth * 0.95, windowHeight * 0.23);
-    
-        fill(255, 200, 0, alfa)
-        rect(windowWidth * 0.95, windowHeight * 0.505, 3, 400/3);
-    
-        fill(100, 150, 0, alfa)
-        rect(windowWidth * 0.95, windowHeight * 0.65, 3, 400/3);
-        text("400 ppm", windowWidth * 0.95, windowHeight * 0.8);
-    
-        ///
+  if(claudiaValenteModel.mouseIsPressed) {
+    // Abrir pop-up con el texto de cada persona
+  }
 
+  leandroBarbeitoModel.position.x = leandroBarbeito.posicionX + nuevoX;
+  leandroBarbeitoModel.position.y = leandroBarbeito.posicionY + nuevoY;
 
-    // Nodos dibujados
-    textStyle(BOLD)
-    textAlign(LEFT)
-    textSize(15)
+  if(leandroBarbeitoModel.mouseIsPressed) {
+    // Abrir pop-up con el texto de cada persona
+  }
 
-    text(nicMotta.nombre + "\n" + nicMotta.ciudad + "\n" + nicMotta.provincia + "\n" + nicMotta.pais + "\n" + "Valor Co2: " + nicMotta.valorCo2,
-         nicMotta.posicionX + nuevoX + xTexto, nicMotta.posicionY + nuevoY + yTexto,
-         tamañoTexto, tamañoTexto
-         );
+  lupitaChavezModel.position.x = lupitaChavez.posicionX + nuevoX;
+  lupitaChavezModel.position.y = lupitaChavez.posicionY + nuevoY;
 
-    text(claudiaValente.nombre + "\n" + claudiaValente.ciudad + "\n" + claudiaValente.provincia + "\n" + claudiaValente.pais + "\n" + "Valor Co2: " + claudiaValente.valorCo2,
-         claudiaValente.posicionX + nuevoX + xTexto, claudiaValente.posicionY + nuevoY + yTexto,
-         tamañoTexto, tamañoTexto
-         );
+  if(lupitaChavezModel.mouseIsPressed) {
+    // Abrir pop-up con el texto de cada persona
+  }
 
-    text(lupitaChavez.nombre + "\n" + lupitaChavez.ciudad + "\n" + lupitaChavez.provincia + "\n" + lupitaChavez.pais + "\n" + "Valor Co2: " + lupitaChavez.valorCo2,
-         lupitaChavez.posicionX + nuevoX + xTexto, lupitaChavez.posicionY + nuevoY + yTexto,
-         tamañoTexto, tamañoTexto
-         );
+  bienalHabanaModel.position.x = bienalHabana.posicionX + nuevoX;
+  bienalHabanaModel.position.y = bienalHabana.posicionY + nuevoY;
 
-    text(leandroBarbeito.nombre + "\n" + leandroBarbeito.ciudad + "\n" + leandroBarbeito.provincia + "\n" + leandroBarbeito.pais + "\n" + "Valor Co2: " + leandroBarbeito.valorCo2,
-         leandroBarbeito.posicionX + nuevoX + xTexto, leandroBarbeito.posicionY + nuevoY + yTexto,
-         tamañoTexto, tamañoTexto
-         );
+  if(bienalHabanaModel.mouseIsPressed) {
+    // Abrir pop-up con el texto de cada persona
+  }
 
-    text(bienalHabana.nombre + "\n" + bienalHabana.ciudad + "\n" + bienalHabana.provincia + "\n" + bienalHabana.pais + "\n" + "Valor Co2: " + bienalHabana.valorCo2,
-         bienalHabana.posicionX + nuevoX + xTexto, bienalHabana.posicionY + nuevoY + yTexto,
-         tamañoTexto, tamañoTexto
-         );
+  muruFusionModel.position.x = muruFusion.posicionX + nuevoX;
+  muruFusionModel.position.y = muruFusion.posicionY + nuevoY;
 
-    text(muruFusion.nombre + "\n" + muruFusion.ciudad + "\n" + muruFusion.provincia + "\n" + muruFusion.pais + "\n" + "Valor Co2: " + muruFusion.valorCo2,
-         muruFusion.posicionX + nuevoX + xTexto, muruFusion.posicionY + nuevoY + yTexto,
-         tamañoTexto, tamañoTexto
-         );
+  if(muruFusionModel.mouseIsPressed) {
+    // Abrir pop-up con el texto de cada persona
+  }
 
-    text(mapa.nombre + "\n",
-         mapa.posicionX + nuevoX + xTexto, mapa.posicionY + nuevoY + yTexto,
-         tamañoTexto, tamañoTexto
-         );
+  mapModel.position.x = mapa.posicionX + nuevoX;
+  mapModel.position.y = mapa.posicionY + nuevoY;
 
-    nicMottaModel.position.x = nicMotta.posicionX + nuevoX;
-    nicMottaModel.position.y = nicMotta.posicionY + nuevoY;
+  if(mapModel.mouseIsPressed) {
+    window.location.href = "./mapa.html";
+  }
 
-    if(nicMottaModel.mouseIsPressed){
-      // Abrir pop-up con el texto de cara persona
-    }
-
-    claudiaValenteModel.position.x = claudiaValente.posicionX + nuevoX;
-    claudiaValenteModel.position.y = claudiaValente.posicionY + nuevoY;
-
-    if(claudiaValenteModel.mouseIsPressed){
-      // Abrir pop-up con el texto de cara persona
-    }
-
-    leandroBarbeitoModel.position.x = leandroBarbeito.posicionX + nuevoX;
-    leandroBarbeitoModel.position.y = leandroBarbeito.posicionY + nuevoY;
-
-    if(leandroBarbeitoModel.mouseIsPressed){
-      // Abrir pop-up con el texto de cara persona
-    }
-
-    lupitaChavezModel.position.x = lupitaChavez.posicionX + nuevoX;
-    lupitaChavezModel.position.y = lupitaChavez.posicionY + nuevoY;
-
-    if(lupitaChavezModel.mouseIsPressed){
-      // Abrir pop-up con el texto de cara persona
-    }
-
-    bienalHabanaModel.position.x = bienalHabana.posicionX + nuevoX;
-    bienalHabanaModel.position.y = bienalHabana.posicionY + nuevoY;
-
-    if(bienalHabanaModel.mouseIsPressed){
-      // Abrir pop-up con el texto de cara persona
-    }
-
-    muruFusionModel.position.x = muruFusion.posicionX + nuevoX;
-    muruFusionModel.position.y = muruFusion.posicionY + nuevoY;
-
-    if(muruFusionModel.mouseIsPressed){
-      // Abrir pop-up con el texto de cara persona
-    }
-
-    mapModel.position.x = mapa.posicionX + nuevoX;
-    mapModel.position.y = mapa.posicionY + nuevoY;
-
-    if(mapModel.mouseIsPressed){
-      window.location.href = "./mapa.html";
-    }
-
-    drawSprites();
-    
-
+  drawSprites();
 }
 
 function mousePressed() {
-    apretado = true;
-    xOffset = mouseX - nuevoX;
-    yOffset = mouseY - nuevoY;
-    cursor(MOVE);
-
-    
+  apretado = true;
+  xOffset = mouseX - nuevoX;
+  yOffset = mouseY - nuevoY;
+  cursor(MOVE);
 }
 
 
 function mouseDragged() {
-    if (apretado) {
-     nuevoX = mouseX - xOffset;
-     nuevoY = mouseY - yOffset;
-    }
+  if (apretado) {
+    nuevoX = mouseX - xOffset;
+    nuevoY = mouseY - yOffset;
+  }
 }
 
 function mouseReleased() {
@@ -525,67 +560,51 @@ function mouseReleased() {
 
 function keyPressed(){  // Reset / poner un boton para volver al centro con algun tipo de delay, mas fluido
   //resetMap()
- 
 }
 
 let sonido = true;
 
 function playSound(){
-
   sonido = !sonido;
 
-  if (sonido == true) {
+  if (sonido === true) {
     sonidoFondo.loop();
   }
   else {
     sonidoFondo.stop();
   }
-  
 }
 
 function resetMap(){
-
   nuevoX = width / 2.0;
   nuevoY = height / 2.0;
 }
 
 let estadoMenu = true;
+
 function mostrarMenu(){
   let menuRosa = document.getElementById('menuRosa');
-
   estadoMenu = !estadoMenu;
 
-  if (estadoMenu == true) {
+  if (estadoMenu === true) {
     
   }
 
-  if (estadoMenu == false) {
-    menuRosa.style.visibility = "visible";
-  }
-  else { menuRosa.style.visibility = "hidden"; }
-   
+  (estadoMenu === false) 
+    ? menuRosa.style.visibility = "visible" 
+    : menuRosa.style.visibility = "hidden";
 }
 
 
-function tModelo(){
+function modeloGiroFondo(){
+  estadoFondo === false && sizeFondo++
+  estadoFondo && sizeFondo--
   
-  if (tEstado == false) {
-    tFondo++;
-  }
-  
-  if (tFondo == tMax) {
-    tEstado = true;
-  }
-
-  if (tEstado == true) {
-    tFondo--;
-  }
-
-  if (tFondo == tMin) {
-    tEstado = false;
-  }
-
+  (sizeFondo === maxSize)
+    ? estadoFondo = true
+    : estadoFondo = false
 }
 
-
-	document.oncontextmenu = function(){return false}
+document.oncontextmenu = function() {
+  return false
+}
