@@ -1,16 +1,19 @@
 // Programado por Nic Motta
-// 2021
+// 2021 - 2022
 // MURU7.8
 
 // TODO -> Loading de la pagina
-// TODO -> Refactorizar codigo - refactor de carpetas y archivos
 // TODO -> Que hacer con los nodos que ya no estan activos? - Dejarlos con el último dato que recibió
+// TODO -> Mapear valores co2 con colores
 
 //! Revisar si funciona bien
 document.oncontextmenu = function(){return false}
 
 // * Colores
 const BACKGROUND_COLOR = 0;
+const LINES_COLOR = 80;
+const LINES_ALPHA = 100;
+const TEXT_COLOR = 200;
 
 // 400 -> 51, 153, 0
 // 1000 ->  153, 204, 51
@@ -19,214 +22,135 @@ const BACKGROUND_COLOR = 0;
 // 4000 -> 204, 51, 0
 // +4000 -> 255, 0, 0
 
-// Configuracion navegacion nodos
+// Configuracion navegacion
 let newWidth, newHeight;
 const BOX_SIZE = 30;
-const offsetWidth = 0.0;
-const offsetHeight = 0.0;
-const PUSHED = false;
+let offsetWidth = 0.0;
+let offsetHeight = 0.0;
+let PRESSED = false;
 const ELLIPSE_SIZE = 500;
 
-// Configuracion texto de nodos
+// Configuracion texto
 const TEXT_X = 150;
 const TEXT_Y = 40;
 const TEXT_SIZE = 150;
 const RANDOM_VALUE = 150;
+const TEXT_FOOTER_SIZE = 12;
+const TEXT_CENTER = 18;
+const TEXT_NODOS = 15;
+const INITIAL_TEXT = 'Ella nos acaricia, nos conecta y nos mantiene con vida.';
+const FOOTER_TEXT = 'MURU 7.8 | Respir0 Namiki | v 2.0 | 2022';
 
-// Textos
-const INITIAL_TEXT = "Ella nos acaricia, nos conecta y nos mantiene con vida.";
-const FOOTER_TEXT = "MURU 7.8 | Respir0 Namiki | v 2.0 | 2022";
-
-const tMin = 250;
 const BACKGROUND_MAX_SIZE = 500;
-const backgroundSize = 250;
-const imageBackgroundState = false;
+let backgroundSize = 250;
+let imageBackgroundState = false;
 
 const isLoading = true;
+const isActiveSound = true;
 
-const datosDispositivos = [
-  { nombre:"Nic Motta", 
-    ciudad:"San Fernando", 
-    provincia:"Buenos Aires", 
-    pais:"Argentina",
-    coordenadas: "",
-    valorDioxido: 1124,
-    texto: "",
-    posicionX: -200,
-    posicionY: -300,
-    valorMap: 0,
-    dispositivo: 'dispositivo-1',
-    randomValue: 0
-  },
-  { nombre:"Claudia Valente", 
-    ciudad:"Jose C. Paz", 
-    provincia:"Buenos Aires", 
-    pais:"Argentina",
-    coordenadas: "",
-    valorDioxido: 480,
-    posicionX: -1000,
-    posicionY: 200,
-    dispositivo: 'dispositivo-1',
-    randomValue: 0
-  },
-  { nombre:"Leandro Barbeito", 
-    ciudad:"Lomas del Mirador", 
-    provincia:"Buenos Aires", 
-    pais:"Argentina",
-    coordenadas: "",
-    valorCo2: 665,
-    posicionX: 300,
-    posicionY: 600,
-    dispositivo: 'dispositivo-1',
-    randomValue: 0
-  },
-  { nombre:"Lupita Chavez", 
-    ciudad:"Tepic", 
-    provincia:"Nayarit", 
-    pais:"Mexico",
-    coordenadas: "",
-    valorDioxido: 1200,
-    texto: "",
-    posicionX: -1000,
-    posicionY: -1000,
-    dispositivo: 'dispositivo-1',
-    randomValue: 0
-  },
-  { nombre:"Bienal de La Habana", 
-    ciudad:"", 
-    provincia:"La Habana", 
-    pais:"Cuba",
-    coordenadas: "",
-    valorCo2: 567,
-    texto: "",
-    posicionX: -500,
-    posicionY: -1500,
-    dispositivo: 'dispositivo-1',
-    randomValue: 0
-  },
-  { nombre:"MURU 7.8 - Fusion", 
-    ciudad:"Ciudad de Buenos Aires", 
-    provincia:"Buenos Aires", 
-    pais:"Argentina",
-    coordenadas: "",
-    valorDioxido: "",
-    texto: "",
-    posicionX: 500,
-    posicionY: 100,
-    dispositivo: 'dispositivo-1',
-    randomValue: 0
-  },
-  { nombre:"Ver mapa de dispositivos activos", 
-    ciudad:"", 
-    provincia:"", 
-    pais:"",
-    coordenadas: "",
-    valorCo2: "",
-    texto: "",
-    posicionX: 700,
-    posicionY: -300,
-    dispositivo: 'dispositivo-1',
-    randomValue: 0
-  },
-]
-
-
-/* Definir cada objeto con su informacion correspondiente, posicion en X, Y, offset, texto, color, etc
-let nicMotta = {
-  nombre:"Nic Motta", 
-  ciudad:"San Fernando", 
-  provincia:"Buenos Aires", 
-  pais:"Argentina",
-  coordenadas: "",
-  valorCo2: 1124,
-  texto: "",
-  posicionX: -200,
-  posicionY: -300,
-  valorMap: 0,
-  dispositivo: 'dispositivo-1'
-};
-
-let claudiaValente = {
-  nombre:"Claudia Valente", 
-  ciudad:"Jose C. Paz", 
-  provincia:"Buenos Aires", 
-  pais:"Argentina",
-  coordenadas: "",
-  valorCo2: 480,
-  posicionX: -1000,
-  posicionY: 200,
-};
-
-let leandroBarbeito = {
-  nombre:"Leandro Barbeito", 
-  ciudad:"Lomas del Mirador", 
-  provincia:"Buenos Aires", 
-  pais:"Argentina",
-  coordenadas: "",
-  valorCo2: 665,
-  posicionX: 300,
-  posicionY: 600,
-};
-
-let lupitaChavez = {
-  nombre:"Lupita Chavez", 
-  ciudad:"Tepic", 
-  provincia:"Nayarit", 
-  pais:"Mexico",
-  coordenadas: "",
-  valorCo2: 1200,
-  texto: "",
-  posicionX: -1000,
-  posicionY: -1000,
-};
-
-let bienalHabana = {
-  nombre:"Bienal de La Habana", 
-  ciudad:"", 
-  provincia:"La Habana", 
-  pais:"Cuba",
-  coordenadas: "",
-  valorCo2: 567,
-  texto: "",
-  posicionX: -500,
-  posicionY: -1500,
-};
-
-let muruFusion = {
-  nombre:"MURU 7.8 - Fusion", 
-  ciudad:"Ciudad de Buenos Aires", 
-  provincia:"Buenos Aires", 
-  pais:"Argentina",
-  coordenadas: "",
-  valorCo2: "",
-  texto: "",
-  posicionX: 500,
-  posicionY: 100,
-};
-
-let mapa = {
-  nombre:"Ver mapa de dispositivos activos", 
-  ciudad:"", 
-  provincia:"", 
-  pais:"",
-  coordenadas: "",
-  valorCo2: "",
-  texto: "",
-  posicionX: 700,
-  posicionY: -300,
-};
-*/
-                  
 let backgroundSemilla;
 let backgroundSound;
 let gifBrus;
 let mapPin;
 
+const datosDispositivos = [
+  { nombre: 'Nic Motta', 
+    ciudad: 'San Fernando', 
+    provincia: 'Buenos Aires', 
+    pais: 'Argentina',
+    coordenadas: '',
+    dioxidoText: 'Valor Co2: ',
+    valorDioxido: 1124,
+    texto: '',
+    posicionX: -200,
+    posicionY: -300,
+    valorMap: 0,
+    idDispositivo: 'dispositivo-1',
+    randomValue: 0
+  },
+  { nombre: 'Claudia Valente', 
+    ciudad: 'Jose C. Paz', 
+    provincia: 'Buenos Aires', 
+    pais: 'Argentina',
+    coordenadas: '',
+    dioxidoText: 'Valor Co2: ',
+    valorDioxido: 480,
+    posicionX: -1000,
+    posicionY: 200,
+    idDispositivo: 'dispositivo-1',
+    randomValue: 0
+  },
+  { nombre: 'Leandro Barbeito', 
+    ciudad: 'Lomas del Mirador', 
+    provincia: 'Buenos Aires', 
+    pais: 'Argentina',
+    coordenadas: '',
+    dioxidoText: 'Valor Co2: ',
+    valorDioxido: 665,
+    posicionX: 300,
+    posicionY: 600,
+    idDispositivo: 'dispositivo-1',
+    randomValue: 0
+  },
+  { nombre: 'Lupita Chavez', 
+    ciudad: 'Tepic', 
+    provincia: 'Nayarit', 
+    pais: 'Mexico',
+    coordenadas: '',
+    dioxidoText: 'Valor Co2: ',
+    valorDioxido: 1200,
+    texto: '',
+    posicionX: -1000,
+    posicionY: -1000,
+    idDispositivo: 'dispositivo-1',
+    randomValue: 0
+  },
+  { nombre: 'Bienal de La Habana', 
+    ciudad:'', 
+    provincia: 'La Habana', 
+    pais: 'Cuba',
+    coordenadas: '',
+    dioxidoText: 'Valor Co2: ',
+    valorDioxido: 567,
+    texto: '',
+    posicionX: -500,
+    posicionY: -1500,
+    idDispositivo: 'dispositivo-1',
+    randomValue: 0
+  },
+  { nombre: 'MURU 7.8 - Fusion', 
+    ciudad: 'Ciudad de Buenos Aires', 
+    provincia: 'Buenos Aires', 
+    pais: 'Argentina',
+    coordenadas: '',
+    dioxidoText: 'Valor Co2: ',
+    valorDioxido: '',
+    texto: '',
+    posicionX: 500,
+    posicionY: 100,
+    idDispositivo: 'dispositivo-1',
+    randomValue: 0
+  },
+  { nombre: 'Ver mapa de dispositivos activos', 
+    ciudad:'', 
+    provincia:'', 
+    pais:'',
+    coordenadas: '',
+    dioxidoText: '',
+    valorDioxido: '',
+    texto: '',
+    posicionX: 700,
+    posicionY: -300,
+    idDispositivo: 'dispositivo-1',
+    randomValue: 0
+  },
+]                 
+
 function preload() {
-  backgroundSemilla = loadImage("./assets/fondoSemilla.png");
+  backgroundSemilla = loadImage('./assets/fondoSemilla.png');
   backgroundSound = loadSound('assets/sound/sonidoSemilla.mp3');
-  gifBrus = loadImage("./assets/brus.gif");
-  mapPin = loadImage("./assets/mapicon.png");
+  gifBrus = loadImage('./assets/brus.gif');
+  mapPin = loadImage('./assets/mapicon.png');
 }
 
 function afterLoad(){
@@ -239,8 +163,8 @@ function setup() {
   newHeight = height / 2.0;
   rectMode(CENTER);
   strokeWeight(1);
-  textLeading(18); // Espacio entre lineas de texto
-  textFont("Exo");
+  textLeading(18);
+  textFont('Exo');
   imageMode(CENTER);
   
   textAlign(CENTER);
@@ -289,19 +213,19 @@ function setup() {
 
   // ! SACAR DE ACA
   // Initialize Firebase
-  let config = {
-    apiKey: "AIzaSyB72EJgyU1K8SAuNPgRtoaOJywraSFNByY",
-    authDomain: "respir0-namiki.firebaseapp.com",
-    databaseURL: "https://respir0-namiki-default-rtdb.firebaseio.com",
-    projectId: "respir0-namiki",
-    storageBucket: "",
-    messagingSenderId: ""
+  const config = {
+    apiKey: 'AIzaSyB72EJgyU1K8SAuNPgRtoaOJywraSFNByY',
+    authDomain: 'respir0-namiki.firebaseapp.com',
+    databaseURL: 'https://respir0-namiki-default-rtdb.firebaseio.com',
+    projectId: 'respir0-namiki',
+    storageBucket: '',
+    messagingSenderId: ''
   }
     
   firebase.initializeApp(config); 
   database = firebase.database();
     
-  let ref = database.ref('data');
+  const ref = database.ref('data');
   ref.on('value', gotData, errData);
 
   // RANDOMS UTILES
@@ -316,15 +240,13 @@ function setup() {
 }
   
 function gotData (data) {
-  let dispositivos = data.val();
-  let keys = Object.keys(dispositivos);
-  
-  let kk = dispositivos['dispositivo-1']
-  let indexDB = Object.keys(kk)
-  let lastIndex = indexDB[indexDB.length - 1]
+  const allDispositivos = data.val();
+  const keyDispositivo = allDispositivos['dispositivo-1']
+  const indexData = Object.keys(keyDispositivo)
+  const lastIndex = indexData[indexData.length - 1]
 
   datosDispositivos.map( item => {
-    item.valorDioxido = dispositivos[item.dispositivo][lastIndex].co2
+    item.valorDioxido = allDispositivos[item.idDispositivo][lastIndex].co2
   })
 }
   
@@ -359,13 +281,13 @@ function draw() {
   })
   
   // LINEAS CONECTORAS
-  stroke(80, 100);
+  stroke(LINES_COLOR, LINES_ALPHA);
 
   datosDispositivos.map(item => {
     line(item.posicionX + newWidth, item.nombre + newHeight, newWidth, newHeight)
   })
 
-  fill(80);
+  fill(LINES_COLOR);
   ellipse(newWidth, newHeight, 20);
   noFill();
   noStroke();
@@ -374,32 +296,41 @@ function draw() {
   text(INITIAL_TEXT, newWidth, newHeight, TEXT_SIZE, TEXT_SIZE);
   
   // Color de los textos
-  fill(200);
+  fill(TEXT_COLOR);
 
   // Footer informacion MURU 7.8
   textStyle(NORMAL);
-  textSize(12);
+  textSize(TEXT_FOOTER_SIZE);
   text(FOOTER_TEXT, windowWidth / 2, windowHeight - 10);
 
   // Centro de espacio virtual - pregunta
   textStyle(BOLD);
-  textSize(18)
+  textSize(TEXT_CENTER)
   text(INITIAL_TEXT, newWidth, newHeight, TEXT_SIZE + 180, TEXT_SIZE)
 
   // Nodos dibujados
   textStyle(BOLD)
   textAlign(LEFT)
-  textSize(15)
+  textSize(TEXT_NODOS)
 
   datosDispositivos.map( item => {
+    fill(TEXT_COLOR)
     text(
-      item.nombre + "\n" + 
-      item.ciudad + "\n" + 
-      item.provincia + "\n" + 
-      item.pais + "\n" + 
-      "Valor Co2: " + 
-      item.valorDioxido,
+      item.nombre + '\n' + 
+      item.ciudad + '\n' + 
+      item.provincia + '\n' + 
+      item.pais + '\n',
       item.posicionX + 
+      newWidth + TEXT_X, 
+      item.posicionY + 
+      newHeight + TEXT_Y,
+      TEXT_SIZE, 
+      TEXT_SIZE
+    )
+
+    fill(255, 0, 0)
+    text(
+      '\n' + '\n' + '\n' + '\n' + '\n' + item.dioxidoText + item.valorDioxido, item.posicionX + 
       newWidth + TEXT_X, 
       item.posicionY + 
       newHeight + TEXT_Y,
@@ -408,60 +339,60 @@ function draw() {
     )
   })
 
-  nicMottaModel.position.x = datosDispositivos.nicMotta.posicionX + newWidth;
-  nicMottaModel.position.y = datosDispositivos.nicMotta.posicionY + newHeight;
+  nicMottaModel.position.x = datosDispositivos[0].posicionX + newWidth;
+  nicMottaModel.position.y = datosDispositivos[0].posicionY + newHeight;
 
   if (nicMottaModel.mouseIsPressed) {
     // Abrir pop-up con el texto de cada persona
   }
 
-  claudiaValenteModel.position.x = datosDispositivos.claudiaValente.posicionX + newWidth;
-  claudiaValenteModel.position.y = datosDispositivos.claudiaValente.posicionY + newHeight;
+  claudiaValenteModel.position.x = datosDispositivos[1].posicionX + newWidth;
+  claudiaValenteModel.position.y = datosDispositivos[1].posicionY + newHeight;
 
   if (claudiaValenteModel.mouseIsPressed) {
     // Abrir pop-up con el texto de cada persona
   }
 
-  leandroBarbeitoModel.position.x = datosDispositivos.leandroBarbeito.posicionX + newWidth;
-  leandroBarbeitoModel.position.y = datosDispositivos.leandroBarbeito.posicionY + newHeight;
+  leandroBarbeitoModel.position.x = datosDispositivos[2].posicionX + newWidth;
+  leandroBarbeitoModel.position.y = datosDispositivos[2].posicionY + newHeight;
 
   if (leandroBarbeitoModel.mouseIsPressed) {
     // Abrir pop-up con el texto de cada persona
   }
 
-  lupitaChavezModel.position.x = datosDispositivos.lupitaChavez.posicionX + newWidth;
-  lupitaChavezModel.position.y = datosDispositivos.lupitaChavez.posicionY + newHeight;
+  lupitaChavezModel.position.x = datosDispositivos[3].posicionX + newWidth;
+  lupitaChavezModel.position.y = datosDispositivos[3].posicionY + newHeight;
 
   if (lupitaChavezModel.mouseIsPressed) {
     // Abrir pop-up con el texto de cada persona
   }
 
-  bienalHabanaModel.position.x = datosDispositivos.bienalHabana.posicionX + newWidth;
-  bienalHabanaModel.position.y = datosDispositivos.bienalHabana.posicionY + newHeight;
+  bienalHabanaModel.position.x = datosDispositivos[4].posicionX + newWidth;
+  bienalHabanaModel.position.y = datosDispositivos[4].posicionY + newHeight;
 
   if (bienalHabanaModel.mouseIsPressed) {
     // Abrir pop-up con el texto de cada persona
   }
 
-  muruFusionModel.position.x = datosDispositivos.muruFusion.posicionX + newWidth;
-  muruFusionModel.position.y = datosDispositivos.muruFusion.posicionY + newHeight;
+  muruFusionModel.position.x = datosDispositivos[5].posicionX + newWidth;
+  muruFusionModel.position.y = datosDispositivos[5].posicionY + newHeight;
 
   if (muruFusionModel.mouseIsPressed) {
     // Abrir pop-up con el texto de cada persona
   }
 
-  mapModel.position.x = datosDispositivos.map.posicionX + newWidth;
-  mapModel.position.y = datosDispositivos.map.posicionY + newHeight;
+  mapModel.position.x = datosDispositivos[6].posicionX + newWidth;
+  mapModel.position.y = datosDispositivos[6].posicionY + newHeight;
 
   if (mapModel.mouseIsPressed) {
-    window.location.href = "./mapa.html";
+    window.location.href = './mapa.html';
   }
 
   drawSprites();
 }
 
 function mousePressed() {
-  PUSHED = true;
+  PRESSED = true;
   offsetWidth = mouseX - newWidth;
   offsetHeight = mouseY - newHeight;
   cursor(MOVE);
@@ -469,14 +400,14 @@ function mousePressed() {
 
 
 function mouseDragged() {
-  if (PUSHED) {
+  if (PRESSED) {
     newWidth = mouseX - offsetWidth;
     newHeight = mouseY - offsetHeight;
   }
 }
 
 function mouseReleased() {
-  PUSHED = false;
+  PRESSED = false;
   cursor(ARROW);
 }
 
@@ -484,17 +415,12 @@ function keyPressed(){  // Reset / poner un boton para volver al centro con algu
   //resetMap()
 }
 
-let sonido = true;
-
 function playSound(){
-  sonido = !sonido;
+  isActiveSound = !isActiveSound;
 
-  if (sonido === true) {
-    backgroundSound.loop();
-  }
-  else {
-    backgroundSound.stop();
-  }
+  isActiveSound === true
+    ? backgroundSound.loop()
+    : backgroundSound.stop()
 }
 
 function resetMap(){
@@ -506,7 +432,7 @@ function modeloGiroFondo(){
   imageBackgroundState === false && backgroundSize++
   imageBackgroundState && backgroundSize--
   
-  (backgroundSize === BACKGROUND_MAX_SIZE)
+  backgroundSize === BACKGROUND_MAX_SIZE
     ? imageBackgroundState = true
     : imageBackgroundState = false
 }
